@@ -3,6 +3,7 @@ public class Main {
         do {
             System.out.println("""
                     Menu 1
+                    ---
                     
                     
                   
