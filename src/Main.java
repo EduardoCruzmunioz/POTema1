@@ -7,7 +7,7 @@ public class Main {
         final String ClAVE_ADMIN= "Gu4p0";
         boolean salir = true;
         var s = new Scanner(System.in);
-        int op = 0;
+        String op = "", opAdmin = "";
 
 
         do {
@@ -16,27 +16,24 @@ public class Main {
             +--------------------------------------------+
             |          HOTEL CIUDAD DE MARTOS            |
             +--------------------------------------------+
-            | 1. Ver estado de ocupación                 |
-            | 2. Reservar una habitación                 |
-            | 3. Realizar checkout                       |
-            | 4. Menú de administrador                   |
-            +--------------------------------------------+
-                    
+            | a. Ver estado de ocupación                 |
+            | b. Reservar una habitación                 |
+            | c. Realizar checkout                       |
+            | d. Menú de administrador                   |
+            +--------------------------------------------+\n
             Elige una opción:
             """);
             // Escribe la opción que quieres
-            op = Integer.parseInt(s.nextLine());
+            op = s.nextLine().toLowerCase();
             switch (op) {
-                case 1: //Estado de ocupación
+                case "a": //Estado de ocupación
+                    break;
+                case "b": //Reservar las habitaciones
+                    break;
+                case "c": //Realizar checkouts
 
                     break;
-                case 2: //Reservar las habitaciones
-
-                    break;
-                case 3: //Realizar checkouts
-
-                    break;
-                case 4: //Mostrar el menú de administrador
+                case "d": //Mostrar el menú de administrador
 
                     break;
                 default:
