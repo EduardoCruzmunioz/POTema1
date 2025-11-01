@@ -25,8 +25,8 @@ public class Main {
             Elige una opción:
             """);
             // Escribe la opción que quieres
-            opcion = Integer.parseInt(s.nextLine());
-            switch (opcion) {
+            op = Integer.parseInt(s.nextLine());
+            switch (op) {
                 case 1: //Estado de ocupación
 
                     break;
@@ -41,7 +41,7 @@ public class Main {
                     break;
                 default:
                     System.out.print("Opción no válida. Inténtelo de nuevo.");
-                    break;:
+                    break;
             }
 
 
