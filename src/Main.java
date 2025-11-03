@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
         //Constantes y variables de valores económicos
@@ -58,7 +58,7 @@ public class Main {
                     │ [d] Menú de administrador                  │
                     ╰────────────────────────────────────────────╯
                     
-                    Elige una opción:\s""");
+                    Elige una opcion:\s""");
             // Escribe la opción que quieres
             op = s.nextLine().toLowerCase();
             switch (op) {
@@ -69,18 +69,18 @@ public class Main {
                             ├────────────────────────────────────────────┤
                             │          ESTADO DE LAS HABITACIONES        │
                             ├────────────┬────────────┬──────────────────┤
-                            │ Habitación | Tipo       | Estado           │
+                            │ Habitación │ Tipo       │ Estado           │
                             ├────────────┼────────────┼──────────────────┤
-                            │ 1          | Doble      | %-17s│
-                            │ 2          | Doble      | %-17s│
-                            │ 3          | Doble      | %-17s│
-                            │ 4          | Doble      | %-17s│
-                            │ 5          | Doble      | %-17s│
-                            │ 6          | Doble      | %-17s│
-                            │ 7          | Doble      | %-17s│
-                            │ 8          | Doble      | %-17s│
-                            │ 9          | Individual | %-17s│
-                            │ 10         | Individual | %-17s│
+                            │ 1          │ Doble      │ %-16s │
+                            │ 2          │ Doble      │ %-16s │
+                            │ 3          │ Doble      │ %-16s │
+                            │ 4          │ Doble      │ %-16s │
+                            │ 5          │ Doble      │ %-16s │
+                            │ 6          │ Doble      │ %-16s │
+                            │ 7          │ Doble      │ %-16s │
+                            │ 8          │ Doble      │ %-16s │
+                            │ 9          │ Individual │ %-16s │
+                            │ 10         │ Individual │ %-16s │
                             ╰────────────┴────────────┴──────────────────╯
                             """, (hab1 ? "Ocupada" : "Libre"), (hab2 ? "Ocupada" : "Libre"), (hab3 ? "Ocupada" : "Libre"), (hab4 ? "Ocupada" : "Libre"), (hab5 ? "Ocupada" : "Libre"), (hab6 ? "Ocupada" : "Libre"), (hab7 ? "Ocupada" : "Libre"), (hab8 ? "Ocupada" : "Libre"), (hab9 ? "Ocupada" : "Libre"), (hab10 ? "Ocupada" : "Libre"));
                     System.out.print("Pulse una tecla para volver al menú");
@@ -112,37 +112,37 @@ public class Main {
                                 } else if (!hab2) {
                                     fechaHab2 = LocalDate.now();
                                     hab2 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab2.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 2 con fecha asignada " + fechaHab2.format(inputFormatter));
 
                                 } else if (!hab3) {
                                     fechaHab3 = LocalDate.now();
                                     hab3 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab3.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 3 con fecha asignada " + fechaHab3.format(inputFormatter));
 
                                 } else if (!hab4) {
                                     fechaHab4 = LocalDate.now();
                                     hab4 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab4.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 4 con fecha asignada " + fechaHab4.format(inputFormatter));
 
                                 } else if (!hab5) {
                                     fechaHab5 = LocalDate.now();
                                     hab5 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab5.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 5 con fecha asignada " + fechaHab5.format(inputFormatter));
 
                                 } else if (!hab6) {
                                     fechaHab6 = LocalDate.now();
                                     hab6 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab6.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 6 con fecha asignada " + fechaHab6.format(inputFormatter));
 
                                 } else if (!hab7) {
                                     fechaHab7 = LocalDate.now();
                                     hab7 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab7.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 7 con fecha asignada " + fechaHab7.format(inputFormatter));
 
                                 } else if (!hab8) {
                                     fechaHab8 = LocalDate.now();
                                     hab8 = true;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab8.format(inputFormatter));
+                                    System.out.println("Habitación asignada número 8 con fecha asignada " + fechaHab8.format(inputFormatter));
 
                                 } else System.out.println("Todas las habitaciones dobles están ocupadas");
                                 break;
@@ -160,6 +160,9 @@ public class Main {
 
                                 } else System.out.println("Las habitaciones individuales están ocupadas");
                                 break;
+                            case "3":
+                                System.out.println("volviendo al menu principal");
+                                break;
                             default:
                                 System.out.println("Opción introducida no válida");
                         }
@@ -175,7 +178,7 @@ public class Main {
                 case "d": //Mostrar el menú de administrador
                     System.out.print("Introduce el usuario: ");
                     user = s.nextLine();
-                    System.out.print("Introduce el usuario: ");
+                    System.out.print("Introduce el usuario: "); // Este es el bug que te mencioné!
                     pass = s.nextLine();
 
                     if (!user.equals(NOMBRE_ADMIN) && !pass.equals(ClAVE_ADMIN)) {
@@ -242,7 +245,7 @@ public class Main {
                                     System.out.println("Apagando programa");
                                     break;
                                 default:
-                                    System.out.println("Opción introducida no valida");
+                                    System.out.println("Opcion introducida no valida");
                             }
                         } while (salir);
                     }
@@ -251,8 +254,9 @@ public class Main {
                     System.out.print("Opción no válida. Inténtelo de nuevo.");
                     break;
             }
-
-
         } while (salir);
     }
+
+
+
 }
