@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +19,18 @@ public class Main {
         int reservasFinalizadas = 1782;
 
         boolean salir = true;
-        String op, opAdmin;
+        String op, opAdmin, tipoHabitacion;
+
+        // Estado de las habitaciones: false = libre, true = ocupada (La habitación 9 y 10 son las individuales y las demás dobles)
+        boolean hab1 = false, hab2 = false, hab3 = false, hab4 = false, hab5 = false, hab6 = false,
+                hab7 = false, hab8 = false, hab9 = false, hab10 = false;
+
+
+        //o
+        // System.out.println(fechaHab1.format(outputFormatter));
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter ouputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fechaHab1, fechaHab2, fechaHab3, fechaHab4, fechaHab5, fechaHab6, fechaHab7, fechaHab8, fechaHab9, fechaHab10;
 
 
         do {
@@ -26,20 +39,80 @@ public class Main {
                     +--------------------------------------------+
                     |          HOTEL CIUDAD DE MARTOS            |
                     +--------------------------------------------+
-                    | A. Ver estado de ocupación                 |
-                    | B. Reservar una habitación                 |
-                    | C. Realizar checkout                       |
-                    | D. Menú de administrador                   |
+                    | a. Ver estado de ocupación                 |
+                    | b. Reservar una habitación                 |
+                    | c. Realizar checkout                       |
+                    | d. Menú de administrador                   |
                     +--------------------------------------------+
                     
                     Elige una opción:\s""");
             // Escribe la opción que quieres
-            op = s.nextLine();
+            op = s.nextLine().toLowerCase();
             switch (op) {
-                case "a": //Estado de ocupación
+                case "a": //Ver estado de ocupación
+                    System.out.printf("""
+                        +--------------------------------------------+
+                        |          HOTEL CIUDAD DE MARTOS            |
+                        +--------------------------------------------+
+                        |          ESTADO DE LAS HABITACIONES        |
+                        +--------------------------------------------+
+                        | Habitación | Tipo       | Estado           |
+                        +--------------------------------------------+
+                        | 1          | Doble      | %-17s|
+                        | 2          | Doble      | %-17s|
+                        | 3          | Doble      | %-17s|
+                        | 4          | Doble      | %-17s|
+                        | 5          | Doble      | %-17s|
+                        | 6          | Doble      | %-17s|
+                        | 7          | Doble      | %-17s|
+                        | 8          | Doble      | %-17s|
+                        | 9          | Individual | %-17s|
+                        | 10         | Individual | %-17s|
+                        +--------------------------------------------+
+                        """, (hab1 ? "Ocupada" : "Libre"), (hab2 ? "Ocupada" : "Libre"), (hab3 ? "Ocupada" : "Libre"),
+                            (hab4 ? "Ocupada" : "Libre"),  (hab5 ? "Ocupada" : "Libre"), (hab6 ? "Ocupada" : "Libre"),
+                            (hab7 ? "Ocupada" : "Libre"),  (hab8 ? "Ocupada" : "Libre"),  (hab9 ? "Ocupada" : "Libre"),
+                            (hab10 ? "Ocupada" : "Libre")
+                    );
 
+                    System.out.print("Pulse una tecla para volver al menú");
+                    s.nextLine();
                     break;
                 case "b": //Reservar las habitaciones
+                    System.out.print("""
+                            1. Individual
+                            2. Doble
+                            
+                            Introduzca una opción:\s""");
+                    tipoHabitacion = s.nextLine();
+                    switch (tipoHabitacion){
+                        case "1":
+                            if (!hab9){
+                                fechaHab9 = LocalDate.now();
+                                hab9 = true;
+                                System.out.println("Habitación asignada número 9 con fecha asignada " + fechaHab9.format(inputFormatter));
+
+                            } else if (!hab10){
+                                fechaHab10 = LocalDate.now();
+                                hab10 = true;
+                                System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab10.format(inputFormatter));
+
+                            } else System.out.println("Las habitaciones individuales están ocupadas");
+                            break;
+
+                        case "2":
+
+                            break;
+
+
+                        default:
+
+
+                    }
+                    System.out.print("Pulse una tecla para volver al menú");
+                    s.nextLine();
+
+
 
                     break;
                 case "c": //Realizar checkouts
@@ -67,7 +140,7 @@ public class Main {
                                 +------------------------------------------------------------------------------------+
                                 \n
                                 Elige una opción:\s""");
-                        opAdmin = s.nextLine();
+                        opAdmin = s.nextLine().toLowerCase();
                         switch (opAdmin) {
                             case "i": //Consulta el ingreso y el número de reservas
                                 System.out.printf("""
