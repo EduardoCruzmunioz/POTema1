@@ -65,11 +65,11 @@ public class Main {
                 case "a": //Ver estado de ocupación
                     System.out.printf("""
                             ╭────────────────────────────────────────────╮
-                            │            HOTEL CIUDAD DE MARTOS          │
+                            │           HOTEL CIUDAD DE MARTOS           │
                             ├────────────────────────────────────────────┤
-                            │          ESTADO DE LAS HABITACIONES        │
+                            │         ESTADO DE LAS HABITACIONES         │
                             ├────────────┬────────────┬──────────────────┤
-                            │ Habitación │ Tipo       │ Estado           │
+                            │ Habitación │    Tipo    │      Estado      │
                             ├────────────┼────────────┼──────────────────┤
                             │ 1          │ Doble      │ %-16s │
                             │ 2          │ Doble      │ %-16s │
@@ -90,15 +90,15 @@ public class Main {
                     do {
                         System.out.print("""
                                 
-                                ╭─────────────────────────────╮
-                                │     SELECCIONAR TIPO        │
-                                ├─────────────────────────────┤
-                                │ [1] Habitación Doble        │
-                                │ [2] Habitación Individual   │
-                                │                             │
-                                ├─────────────────────────────┤
-                                │ [3] Volver al menú anterior │
-                                ╰─────────────────────────────╯
+                                ╭────────────────────────────────────╮
+                                │          SELECCIONAR TIPO          │
+                                ├────────────────────────────────────┤
+                                │ [i] Habitación Doble               │
+                                │ [ii] Habitación Individual         │
+                                │                                    │
+                                ├────────────────────────────────────┤
+                                │ [iii] Volver al menú anterior      │
+                                ╰────────────────────────────────────╯
                                 
                                 Introduzca una opción (1-3):\s""");
                         tipoHabitacion = s.nextLine();
@@ -217,9 +217,9 @@ public class Main {
                                     System.out.printf("""
                                                     
                                                     ╭───────────────────────────────────────╮
-                                                    │        DESGLOSE DE CAMBIO (CAJA)      │
+                                                    │       DESGLOSE DE CAMBIO (CAJA)       │
                                                     ├───────────────────┬───────────────────┤
-                                                    │     BILLETES      │      MONEDAS      │
+                                                    │      BILLETES     │      MONEDAS      │
                                                     ├───────────────────┼───────────────────┤
                                                     │ %-8s : %6d │ %-8s : %6d │
                                                     │ %-8s : %6d │ %-8s : %6d │
