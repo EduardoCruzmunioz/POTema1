@@ -1,8 +1,10 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
@@ -13,7 +15,7 @@ public class Main {
 
         // Variables para guardar el precio del producto el dinero con el que paga y el cambio a realizar
         final int IVA = 21;
-        double precioProducto = 500, iva, precioConIva, pago = 0, cambio = 0;
+        double tarifaNoche = 0, totalSinIva = 0, subtotal = 0, valorIVA = 0, totalConIVA = 0;
 
         // Inicio de variables del dinero que tenemos en la caja
         int totalBilletes500 = 10, totalBilletes200 = 10, totalBilletes100 = 10, totalBilletes50 = 10,
@@ -30,20 +32,30 @@ public class Main {
         final String ClAVE_ADMIN = "hola";
         String user, pass;
 
-        int reservasFinalizadas = 1782;
+        int reservasFinalizadas = 0;
 
         boolean salir = true;
         String op, opAdmin, tipoHabitacion;
 
         // Estado de las habitaciones: false = libre, true = ocupada (La habitación 9 y 10 son las individuales y las demás dobles)
         boolean hab1 = false, hab2 = false, hab3 = false, hab4 = false, hab5 = false, hab6 = false, hab7 = false, hab8 = false, hab9 = false, hab10 = false;
+        String nombreHab1 = "", nombreHab2 = "", nombreHab3 = "", nombreHab4 = "", nombreHab5 = "", nombreHab6 = "",
+                nombreHab7 = "", nombreHab8 = "", nombreHab9 = "", nombreHab10 = "";
+        String numHab, nombreCliente = "", telefono;
+        boolean factura = false;
 
+        int numReserva = 2025;
+        long numNoches = 0;
+        int huespedes = 0;
 
-        //o
+        // Variables de fechas
         // System.out.println(fechaHab1.format(outputFormatter));
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter ouputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate fechaHab1, fechaHab2, fechaHab3, fechaHab4, fechaHab5, fechaHab6, fechaHab7, fechaHab8, fechaHab9, fechaHab10;
+        LocalDate fechaHab1 = null, fechaHab2 = null, fechaHab3 = null, fechaHab4 = null, fechaHab5 = null,
+                fechaHab6 = null, fechaHab7 = null, fechaHab8 = null, fechaHab9 = null, fechaHab10 = null,
+                fechaSalida = null, fechaEntrada = null;
+        String fecha;
 
 
         do {
@@ -102,65 +114,79 @@ public class Main {
                                 
                                 Introduzca una opción (1-3):\s""");
                         tipoHabitacion = s.nextLine();
+                        if (!tipoHabitacion.equalsIgnoreCase("iii")) {
+                            System.out.print("Introduzca un nombre para la reserva: ");
+                            nombreCliente = s.nextLine().toLowerCase();
+                        }
                         switch (tipoHabitacion) {
-                            case "1":
+                            case "i":
                                 if (!hab1) {
                                     fechaHab1 = LocalDate.now();
                                     hab1 = true;
+                                    nombreHab1 = nombreCliente;
                                     System.out.println("Habitación asignada número 1 con fecha asignada " + fechaHab1.format(inputFormatter));
 
                                 } else if (!hab2) {
                                     fechaHab2 = LocalDate.now();
                                     hab2 = true;
+                                    nombreHab2 = nombreCliente;
                                     System.out.println("Habitación asignada número 2 con fecha asignada " + fechaHab2.format(inputFormatter));
 
                                 } else if (!hab3) {
                                     fechaHab3 = LocalDate.now();
                                     hab3 = true;
+                                    nombreHab3 = nombreCliente;
                                     System.out.println("Habitación asignada número 3 con fecha asignada " + fechaHab3.format(inputFormatter));
 
                                 } else if (!hab4) {
                                     fechaHab4 = LocalDate.now();
                                     hab4 = true;
+                                    nombreHab4 = nombreCliente;
                                     System.out.println("Habitación asignada número 4 con fecha asignada " + fechaHab4.format(inputFormatter));
 
                                 } else if (!hab5) {
                                     fechaHab5 = LocalDate.now();
                                     hab5 = true;
+                                    nombreHab5 = nombreCliente;
                                     System.out.println("Habitación asignada número 5 con fecha asignada " + fechaHab5.format(inputFormatter));
 
                                 } else if (!hab6) {
                                     fechaHab6 = LocalDate.now();
                                     hab6 = true;
+                                    nombreHab6 = nombreCliente;
                                     System.out.println("Habitación asignada número 6 con fecha asignada " + fechaHab6.format(inputFormatter));
 
                                 } else if (!hab7) {
                                     fechaHab7 = LocalDate.now();
                                     hab7 = true;
+                                    nombreHab7 = nombreCliente;
                                     System.out.println("Habitación asignada número 7 con fecha asignada " + fechaHab7.format(inputFormatter));
 
                                 } else if (!hab8) {
                                     fechaHab8 = LocalDate.now();
                                     hab8 = true;
+                                    nombreHab8 = nombreCliente;
                                     System.out.println("Habitación asignada número 8 con fecha asignada " + fechaHab8.format(inputFormatter));
 
                                 } else System.out.println("Todas las habitaciones dobles están ocupadas");
                                 break;
 
-                            case "2":
+                            case "ii":
                                 if (!hab9) {
                                     fechaHab9 = LocalDate.now();
                                     hab9 = true;
+                                    nombreHab9 = nombreCliente;
                                     System.out.println("Habitación asignada número 9 con fecha asignada " + fechaHab9.format(inputFormatter));
 
                                 } else if (!hab10) {
                                     fechaHab10 = LocalDate.now();
                                     hab10 = true;
+                                    nombreHab10 = nombreCliente;
                                     System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab10.format(inputFormatter));
 
                                 } else System.out.println("Las habitaciones individuales están ocupadas");
                                 break;
-                            case "3":
+                            case "iii":
                                 System.out.println("volviendo al menu principal");
                                 break;
                             default:
@@ -168,17 +194,115 @@ public class Main {
                         }
                         System.out.print("Pulse una tecla para volver al menú");
                         s.nextLine();
-                    } while (!tipoHabitacion.equalsIgnoreCase("3"));
-
-
+                    } while (!tipoHabitacion.equalsIgnoreCase("iii"));
                     break;
                 case "c": //Realizar checkouts
+                    factura = false;
+                    System.out.print("Introduzca el nombre del cliente: ");
+                    nombreCliente = s.nextLine().toLowerCase();
+                    do {
+                        System.out.print("Introduzca el número de teléfono: ");
+                        telefono = s.nextLine();
+                    } while (telefono.length() != 9);
+                    System.out.print("Introduzca el número de la habitación (1 al 10): ");
+                    numHab = s.nextLine();
+                    switch (numHab) {
+                        case "1", "2", "3", "4", "5", "6", "7", "8":
+                            if (numHab.equals("1") && nombreHab1.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab1;
+                                factura = true;
+                            }
+                            if (numHab.equals("2") && nombreHab2.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab2;
+                                factura = true;
+                            }
+                            if (numHab.equals("3") && nombreHab3.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab3;
+                                factura = true;
+                            }
+                            if (numHab.equals("4") && nombreHab4.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab4;
+                                factura = true;
+                            }
+                            if (numHab.equals("5") && nombreHab5.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab5;
+                                factura = true;
+                            }
+                            if (numHab.equals("6") && nombreHab6.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab6;
+                                factura = true;
+                            }
+                            if (numHab.equals("7") && nombreHab7.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab7;
+                                factura = true;
+                            }
+                            if (numHab.equals("8") && nombreHab8.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab8;
+                                factura = true;
+                            }
 
+                            System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
+                            fecha = s.nextLine();
+                            fechaSalida = LocalDate.parse(fecha, inputFormatter);
+                            if (fechaEntrada != null) {
+                                numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+                            }
+                            huespedes = 2;
+                            tarifaNoche = PRECIO_HABITACION_DOBLE;
+                            totalSinIva = tarifaNoche * numNoches;
+                            valorIVA = (totalSinIva * IVA) / 100;
+                            totalConIVA = totalSinIva + valorIVA;
+
+                            break;
+                        default:
+                            System.out.println("Habitación introducida no existente compruebe de nuevo");
+                    }
+                    if (factura) {
+
+                        System.out.printf("""
+                                        *******************************************************
+                                        *                FACTURA DE ALOJAMIENTO               *
+                                        *******************************************************
+                                        
+                                        Descripción: %s
+                                        Confirmación:      %d
+                                        
+                                        Entrada:  %s
+                                        Salida:   %s
+                                        Pax:      %d Huésped(es)
+                                        Noches:   %d
+                                        
+                                        Tarifa (por noche): \t%.2f €
+                                        -------------------------------------------------------
+                                        
+                                        Monto o Total (SIN IVA):\t%.2f €
+                                        Subtotal (Base Imponible):\t%.2f €
+                                        IVA (21%%):\t\t%.2f €
+                                        -------------------------------------------------------
+                                        TOTAL A PAGAR (CON IVA):\t%.2f €
+                                        *******************************************************
+                                        """,
+
+                                // AQUÍ DEBES PONER LAS VARIABLES REALES EN EL ORDEN ESPECIFICADO:
+                                nombreCliente, // Descripción
+                                numReserva,    // Confir
+                                fechaEntrada.format(ouputFormatter), // Entrada (Ejemplo con un LocalDate)
+                                fechaSalida.format(ouputFormatter),  // Salida (Ejemplo con un LocalDate)
+                                huespedes,     // Pax (int)
+                                numNoches,     // Noches (int)
+                                tarifaNoche,   // Tarifa (double)
+                                totalSinIva,    // Monto o Total (double)
+                                subtotal,      // Subtotal (double)
+                                valorIVA,      // IVA (double)
+                                totalConIVA    // TOTAL (double)
+                        );
+
+                    }
                     break;
                 case "d": //Mostrar el menú de administrador
-                    System.out.print("Introduce el usuario: ");
+                    System.out.print("Introduzca el usuario: ");
                     user = s.nextLine();
-                    System.out.print("Introduce el usuario: "); // Este es el bug que te mencioné!
+                    System.out.print("Introduzca la clave: "); // Este es el bug que te mencioné!
                     pass = s.nextLine();
 
                     if (!user.equals(NOMBRE_ADMIN) && !pass.equals(ClAVE_ADMIN)) {
@@ -245,7 +369,7 @@ public class Main {
                                     System.out.println("Apagando programa");
                                     break;
                                 default:
-                                    System.out.println("Opcion introducida no valida");
+                                    System.out.println("Opción introducida no valida");
                             }
                         } while (salir);
                     }
@@ -256,7 +380,6 @@ public class Main {
             }
         } while (salir);
     }
-
 
 
 }
