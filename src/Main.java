@@ -187,7 +187,7 @@ public class Main {
                                 } else System.out.println("Las habitaciones individuales están ocupadas");
                                 break;
                             case "iii":
-                                System.out.println("volviendo al menu principal");
+                                System.out.println("Volviendo al menu principal");
                                 break;
                             default:
                                 System.out.println("Opción introducida no válida");
@@ -296,6 +296,62 @@ public class Main {
                                 valorIVA,      // IVA (double)
                                 totalConIVA    // TOTAL (double)
                         );
+                        //Cuando se muestre la factura liberamos la habitación
+                        switch (numHab) {
+                            case "1":
+                                hab1 = false; //Marcamos la habitación como libre
+                                nombreHab1 = ""; //Eliminamos el nombre del cliente que la ocupaba
+                                fechaHab1 = null; //Eliminamos la fecha de entrada
+                                break;
+                            case "2":
+                                hab2 = false;
+                                nombreHab2 = "";
+                                fechaHab2 = null;
+                                break;
+                            case "3":
+                                hab3 = false;
+                                nombreHab3 = "";
+                                fechaHab3 = null;
+                                break;
+                            case "4":
+                                hab4 = false;
+                                nombreHab4 = "";
+                                fechaHab4 = null;
+                                break;
+                            case "5":
+                                hab5 = false;
+                                nombreHab5 = "";
+                                fechaHab5 = null;
+                                break;
+                            case "6":
+                                hab6 = false;
+                                nombreHab6 = "";
+                                fechaHab6 = null;
+                                break;
+                            case "7":
+                                hab7 = false;
+                                nombreHab7 = "";
+                                fechaHab7 = null;
+                                break;
+                            case "8":
+                                hab8 = false;
+                                nombreHab8 = "";
+                                fechaHab8 = null;
+                                break;
+                            case "9":
+                                hab9 = false;
+                                nombreHab9 = "";
+                                fechaHab9 = null;
+                                break;
+                            case "10":
+                                hab10 = false;
+                                nombreHab10 = "";
+                                fechaHab10 = null;
+                                break;
+                            default:
+                                System.out.println("Número de habitación no válido. No se ha podido liberar la habitación");
+                                break;
+                        }
 
                     }
                     break;
