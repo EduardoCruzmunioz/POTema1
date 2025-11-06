@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-     static void main(String[] args) {
+    static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
         //Constantes y variables de valores económicos
@@ -118,7 +118,7 @@ public class Main {
                                 │ [iii] Volver al menú anterior      │
                                 ╰────────────────────────────────────╯
                                 
-                                Introduzca una opción (1-3):\s""");
+                                Introduzca una opción (i - iii):\s""");
                         tipoHabitacion = s.nextLine();
                         if (!tipoHabitacion.equalsIgnoreCase("iii")) {
                             System.out.print("Introduzca un nombre para la reserva: ");
@@ -298,13 +298,15 @@ public class Main {
 
                     } else {// Si la bandera 'factura' es true (cliente y habitación correctos)
 
-                        //Solicitamos la factura como un String para después pasarla a un LocalDate
-                        System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
-                        fecha = s.nextLine();
-                        fechaSalida = LocalDate.parse(fecha, inputFormatter);
+                        do {// validación de que las noches no sean negativas
+                            //Solicitamos la factura como un String para después pasarla a un LocalDate
+                            System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
+                            fecha = s.nextLine();
+                            fechaSalida = LocalDate.parse(fecha, inputFormatter);
 
-                        //Calculamos los días que hay entre la entrada y salida del cliente
-                        numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+                            //Calculamos los días que hay entre la entrada y salida del cliente
+                            numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+                        } while (numNoches > 0);
 
                         //Calculamos el importe de la factura
                         totalSinIva = tarifaNoche * numNoches;
