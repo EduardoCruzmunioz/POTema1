@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+     static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
         //Constantes y variables de valores económicos
@@ -15,13 +15,13 @@ public class Main {
 
         // Variables para guardar el precio del producto el dinero con el que paga y el cambio a realizar
         final int IVA = 21;
-        double tarifaNoche = 0, totalSinIva = 0, subtotal = 0, valorIVA = 0, totalConIVA = 0;
+        double tarifaNoche = 0, totalSinIva = 0, subtotal = 0, valorIVA = 0, totalConIVA = 0, pago = 0;
 
         // Inicio de variables del dinero que tenemos en la caja
-        int totalBilletes500 = 10, totalBilletes200 = 10, totalBilletes100 = 10, totalBilletes50 = 10,
-                totalBilletes20 = 10, totalBilletes10 = 10, totalBilletes5 = 10, totalMonedas2e = 10,
-                totalMonedas1e = 10, totalMonedas50cent = 10, totalMonedas20cent = 10, totalMonedas10cent = 10,
-                totalMonedas5cent = 10, totalMonedas2cent = 10, totalMonedas1cent = 10;
+        int totalBilletes500 = 11, totalBilletes200 = 8, totalBilletes100 = 17, totalBilletes50 = 14,
+                totalBilletes20 = 19, totalBilletes10 = 12, totalBilletes5 = 23, totalMonedas2e = 31,
+                totalMonedas1e = 33, totalMonedas50cent = 35, totalMonedas20cent = 37, totalMonedas10cent = 39,
+                totalMonedas5cent = 41, totalMonedas2cent = 43, totalMonedas1cent = 45;
 
         // Variables que contabilizán las cantidades de billetes o monedas a dar
         int billetes500, billetes200, billetes100, billetes50, billetes20, billetes10, billetes5,
@@ -38,18 +38,18 @@ public class Main {
         String op, opAdmin, tipoHabitacion;
 
         // Estado de las habitaciones: false = libre, true = ocupada (La habitación 9 y 10 son las individuales y las demás dobles)
+        // Nota: Esto sería más fácil de manejar con un array de booleanos.
         boolean hab1 = false, hab2 = false, hab3 = false, hab4 = false, hab5 = false, hab6 = false, hab7 = false, hab8 = false, hab9 = false, hab10 = false;
         String nombreHab1 = "", nombreHab2 = "", nombreHab3 = "", nombreHab4 = "", nombreHab5 = "", nombreHab6 = "",
                 nombreHab7 = "", nombreHab8 = "", nombreHab9 = "", nombreHab10 = "";
         String numHab, nombreCliente = "", telefono;
         boolean factura = false;
 
-        int numReserva = 2025;
+        int numReserva = 20251100;
         long numNoches = 0;
         int huespedes = 0;
 
         // Variables de fechas
-        // System.out.println(fechaHab1.format(outputFormatter));
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter ouputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fechaHab1 = null, fechaHab2 = null, fechaHab3 = null, fechaHab4 = null, fechaHab5 = null,
@@ -58,6 +58,7 @@ public class Main {
         String fecha;
 
 
+        // Bucle principal del programa
         do {
             // Nos muestra el menú
             System.out.print("""
@@ -73,8 +74,12 @@ public class Main {
                     Elige una opcion:\s""");
             // Escribe la opción que quieres
             op = s.nextLine().toLowerCase();
+
+            // Switch principal que gestiona las opciones del menú
             switch (op) {
                 case "a": //Ver estado de ocupación
+                    // Muestra una tabla formateada con el estado (Libre/Ocupada) de las 10 habitaciones.
+                    // Usa operadores ternarios (hab1 ? "Ocupada" : "Libre") para determinar qué string mostrar.
                     System.out.printf("""
                             ╭────────────────────────────────────────────╮
                             │           HOTEL CIUDAD DE MARTOS           │
@@ -99,6 +104,7 @@ public class Main {
                     s.nextLine();
                     break;
                 case "b": //Reservar las habitaciones
+                    // Inicia el submenú para reservar una habitación.
                     do {
                         System.out.print("""
                                 
@@ -118,8 +124,10 @@ public class Main {
                             System.out.print("Introduzca un nombre para la reserva: ");
                             nombreCliente = s.nextLine().toLowerCase();
                         }
+
+                        // Switch para gestionar el tipo de habitación a reservar
                         switch (tipoHabitacion) {
-                            case "i":
+                            case "i": // Lógica para reservar habitación DOBLE
                                 if (!hab1) {
                                     fechaHab1 = LocalDate.now();
                                     hab1 = true;
@@ -171,7 +179,9 @@ public class Main {
                                 } else System.out.println("Todas las habitaciones dobles están ocupadas");
                                 break;
 
-                            case "ii":
+                            case "ii": // Lógica para reservar habitación INDIVIDUAL
+                                // Busca la primera habitación individual (9-10) que esté libre
+                                // y la asigna al cliente.
                                 if (!hab9) {
                                     fechaHab9 = LocalDate.now();
                                     hab9 = true;
@@ -186,7 +196,7 @@ public class Main {
 
                                 } else System.out.println("Las habitaciones individuales están ocupadas");
                                 break;
-                            case "iii":
+                            case "iii": // Salir del submenú de reservas
                                 System.out.println("volviendo al menu principal");
                                 break;
                             default:
@@ -197,71 +207,133 @@ public class Main {
                     } while (!tipoHabitacion.equalsIgnoreCase("iii"));
                     break;
                 case "c": //Realizar checkouts
-                    factura = false;
+                    // Inicia el proceso de CHECK-OUT del cliente.
+                    factura = false; // Resetea la bandera de factura
                     System.out.print("Introduzca el nombre del cliente: ");
                     nombreCliente = s.nextLine().toLowerCase();
-                    do {
+                    do { // Validación simple de la longitud del teléfono
                         System.out.print("Introduzca el número de teléfono: ");
                         telefono = s.nextLine();
+                        if (telefono.length() != 9) {
+                            System.out.println("El número debe ser de longitud 9");
+                            s.nextLine();
+                        }
                     } while (telefono.length() != 9);
                     System.out.print("Introduzca el número de la habitación (1 al 10): ");
                     numHab = s.nextLine();
+
+                    // Switch para identificar la habitación y verificar el nombre del cliente
                     switch (numHab) {
-                        case "1", "2", "3", "4", "5", "6", "7", "8":
+                        case "1", "2", "3", "4", "5", "6", "7", "8":// Habitaciones DOBLES
+                            // Comprueba si el número de habitación Y el nombre del cliente coinciden.
+                            // Si coinciden, guarda la fecha de entrada y marca 'factura' como true.
                             if (numHab.equals("1") && nombreHab1.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab1;
                                 factura = true;
+                                hab1 = false;
                             }
                             if (numHab.equals("2") && nombreHab2.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab2;
                                 factura = true;
+                                hab2 = false;
                             }
                             if (numHab.equals("3") && nombreHab3.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab3;
                                 factura = true;
+                                hab3 = false;
                             }
                             if (numHab.equals("4") && nombreHab4.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab4;
                                 factura = true;
+                                hab4 = false;
                             }
                             if (numHab.equals("5") && nombreHab5.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab5;
                                 factura = true;
+                                hab5 = false;
                             }
                             if (numHab.equals("6") && nombreHab6.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab6;
                                 factura = true;
+                                hab6 = false;
                             }
                             if (numHab.equals("7") && nombreHab7.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab7;
                                 factura = true;
+                                hab7 = false;
                             }
                             if (numHab.equals("8") && nombreHab8.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab8;
                                 factura = true;
+                                hab8 = false;
                             }
-
-                            System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
-                            fecha = s.nextLine();
-                            fechaSalida = LocalDate.parse(fecha, inputFormatter);
-                            if (fechaEntrada != null) {
-                                numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-                            }
+                            // Asigna los valores para la factura de habitación doble
                             huespedes = 2;
                             tarifaNoche = PRECIO_HABITACION_DOBLE;
-                            totalSinIva = tarifaNoche * numNoches;
-                            valorIVA = (totalSinIva * IVA) / 100;
-                            totalConIVA = totalSinIva + valorIVA;
-
+                            break;
+                        case "9", "10": // Habitaciones INDIVIDUALES
+                            // Misma lógica que las dobles, pero para habitaciones 9 y 10.
+                            if (numHab.equals("9") && nombreHab9.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab9;
+                                factura = true;
+                                hab9 = false;
+                            }
+                            if (numHab.equals("10") && nombreHab10.equals(nombreCliente)) {
+                                fechaEntrada = fechaHab10;
+                                factura = true;
+                                hab10 = false;
+                            }
+                            // Asigna los valores para la factura de habitación individual
+                            huespedes = 1;
+                            tarifaNoche = PRECIO_HABITACION_INDIVIDUAL;
                             break;
                         default:
                             System.out.println("Habitación introducida no existente compruebe de nuevo");
                     }
-                    if (factura) {
 
+                    if (!factura) { // Si 'factura' fue false (cliente/habitación no coinciden),
+
+                        System.out.println("No se han podido verificar los datos de la reserva.");
+                        System.out.println("El nombre del cliente no coincide con la habitación indicada.");
+
+                    } else {// Si la bandera 'factura' es true (cliente y habitación correctos)
+
+                        //Solicitamos la factura como un String para después pasarla a un LocalDate
+                        System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
+                        fecha = s.nextLine();
+                        fechaSalida = LocalDate.parse(fecha, inputFormatter);
+
+                        //Calculamos los días que hay entre la entrada y salida del cliente
+                        numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+
+                        //Calculamos el importe de la factura
+                        totalSinIva = tarifaNoche * numNoches;
+                        valorIVA = (totalSinIva * IVA) / 100;
+                        totalConIVA = totalSinIva + valorIVA;
+
+                        // Incrementamos los contadores globales
+                        ingresosTotales += totalConIVA; // Suma al total de ingresos
+                        reservasFinalizadas++; // Incrementa el contador de checkouts
+                        numReserva++; // Incrementa el número de confirmación para la próxima reserva
+
+                        try {
+                            System.out.print("\nCalculando y generando factura, por favor espere");
+
+                            for (int i = 0; i < 3; i++) {
+                                Thread.sleep(250);
+                                System.out.print(".");
+                            }
+                            // Añadimos un salto de línea final antes de mostrar la factura
+                            System.out.println();
+
+                        } catch (InterruptedException e) {
+                            System.out.println("Se interrumpió el cálculo de la factura.");
+                        }
+
+                        //Aquí se pinta la factura
                         System.out.printf("""
                                         *******************************************************
-                                        *                FACTURA DE ALOJAMIENTO               *
+                                        * FACTURA DE ALOJAMIENTO               *
                                         *******************************************************
                                         
                                         Descripción: %s
@@ -276,39 +348,149 @@ public class Main {
                                         -------------------------------------------------------
                                         
                                         Monto o Total (SIN IVA):\t%.2f €
-                                        Subtotal (Base Imponible):\t%.2f €
                                         IVA (21%%):\t\t%.2f €
                                         -------------------------------------------------------
                                         TOTAL A PAGAR (CON IVA):\t%.2f €
                                         *******************************************************
-                                        """,
-
-                                // AQUÍ DEBES PONER LAS VARIABLES REALES EN EL ORDEN ESPECIFICADO:
-                                nombreCliente, // Descripción
-                                numReserva,    // Confir
-                                fechaEntrada.format(ouputFormatter), // Entrada (Ejemplo con un LocalDate)
-                                fechaSalida.format(ouputFormatter),  // Salida (Ejemplo con un LocalDate)
-                                huespedes,     // Pax (int)
-                                numNoches,     // Noches (int)
-                                tarifaNoche,   // Tarifa (double)
-                                totalSinIva,    // Monto o Total (double)
-                                subtotal,      // Subtotal (double)
-                                valorIVA,      // IVA (double)
-                                totalConIVA    // TOTAL (double)
+                                        """, nombreCliente, numReserva, fechaEntrada.format(ouputFormatter),
+                                fechaSalida.format(ouputFormatter), huespedes, numNoches, tarifaNoche,
+                                totalSinIva, valorIVA, totalConIVA
                         );
 
+                        // --- INICIO DEL PROCESO DE PAGO Y CAMBIO ---
+
+                        do {
+                            System.out.printf("""
+                                    precio sin IVA: %4.2f
+                                    IVA 21: %4.2f
+                                    Precio con IVA: %4.2f
+                                    """, totalSinIva, valorIVA, totalConIVA);
+                            System.out.printf("¿Cuanto es el importe que va a abonar? (no puede ser inferior a %.2f): ", totalConIVA);
+                            pago = Double.parseDouble(s.nextLine());
+
+                            if (pago < totalConIVA)
+                                System.out.printf("Le recuerdo que le importe a pagar debe ser superior a %.2f", totalConIVA);
+                        } while (pago < totalConIVA);
+
+                        double cambio = Math.abs(pago - totalConIVA);
+
+                        // Redondeo inicial seguro para evitar problemas de precisión de 'double'
+                        cambio = (Math.round(cambio * 100.0) / 100.0);
+
+                        System.out.println("Cambio a devolver: " + cambio);
+
+                        if (cambio == 0) System.out.println("\tEl cambio es exacto");
+
+                        // Bucle para calcular el desglose del cambio
+                        // Va desde la denominación más alta (500€) a la más baja (0.01€)
+                        while (cambio > 0) {
+
+                            // Redondeo en cada iteración para mitigar errores de coma flotante
+                            cambio = (Math.round(cambio * 100.0) / 100.0);
+
+                            if (cambio >= 500 && totalBilletes500 != 0) { //Comprueba si el cambio es mayor a 500
+                                billetes500 = (int) (cambio / 500); // Se usa int casting para la división
+                                System.out.printf("\tBilletes de 500 euros: %d\n", billetes500); //Informa la cantidad de la divisa
+                                cambio -= billetes500 * 500; // Restar, ya que el operador % no funciona bien con doubles
+                                totalBilletes500 -= billetes500; //Le resta los billetes al total de billetes
+                            } else if (cambio >= 200 && totalBilletes200 != 0) {
+                                billetes200 = (int) (cambio / 200);
+                                System.out.printf("\tBilletes de 200 euros: %d\n", billetes200);
+                                cambio -= billetes200 * 200;
+                                totalBilletes200 -= billetes200;
+                            } else if (cambio >= 100 && totalBilletes100 != 0) {
+                                billetes100 = (int) (cambio / 100);
+                                System.out.printf("\tBilletes de 100 euros: %d\n", billetes100);
+                                cambio -= billetes100 * 100;
+                                totalBilletes100 -= billetes100;
+                            } else if (cambio >= 50 && totalBilletes50 != 0) {
+                                billetes50 = (int) (cambio / 50);
+                                System.out.printf("\tBilletes de  50 euros: %d\n", billetes50);
+                                cambio -= billetes50 * 50;
+                                totalBilletes50 -= billetes50;
+                            } else if (cambio >= 20 && totalBilletes20 != 0) {
+                                billetes20 = (int) (cambio / 20);
+                                System.out.printf("\tBilletes de  20 euros: %d\n", billetes20);
+                                cambio -= billetes20 * 20;
+                                totalBilletes20 -= billetes20;
+                            } else if (cambio >= 10 && totalBilletes10 != 0) {
+                                billetes10 = (int) (cambio / 10);
+                                System.out.printf("\tBilletes de  10 euros: %d\n", billetes10);
+                                cambio -= billetes10 * 10;
+                                totalBilletes10 -= billetes10;
+                            } else if (cambio >= 5 && totalBilletes5 != 0) {
+                                billetes5 = (int) (cambio / 5);
+                                System.out.printf("\tBilletes de   5 euros: %d\n", billetes5);
+                                cambio -= billetes5 * 5;
+                                totalBilletes5 -= billetes5;
+                            } else if (cambio >= 2 && totalMonedas2e != 0) {
+                                monedas2e = (int) (cambio / 2);
+                                System.out.printf("\tModena de 2 euros: %d\n", monedas2e);
+                                cambio -= monedas2e * 2;
+                                totalMonedas2e -= monedas2e;
+                            } else if (cambio >= 1 && totalMonedas1e != 0) {
+                                monedas1e = (int) (cambio / 1);
+                                System.out.printf("\tModena de 1 euros: %d\n", monedas1e);
+                                cambio -= monedas1e * 1;
+                                totalMonedas1e -= monedas1e;
+                            } else if (cambio >= 0.50 && totalMonedas50cent != 0) {
+                                monedas50cent = (int) (cambio / 0.50);
+                                System.out.printf("\tModena de 0.50 euros: %d\n", monedas50cent);
+                                cambio -= monedas50cent * 0.50; // Restar la cantidad dada
+                                totalMonedas50cent -= monedas50cent;
+                            } else if (cambio >= 0.20 && totalMonedas20cent != 0) {
+                                monedas20cent = (int) (cambio / 0.20);
+                                System.out.printf("\tModena de 0.20 euros: %d\n", monedas20cent);
+                                cambio -= monedas20cent * 0.20;
+                                totalMonedas20cent -= monedas20cent;
+                            } else if (cambio >= 0.10 && totalMonedas10cent != 0) {
+                                monedas10cent = (int) (cambio / 0.10);
+                                System.out.printf("\tModena de 0.10 euros: %d\n", monedas10cent);
+                                cambio -= monedas10cent * 0.10;
+                                totalMonedas10cent -= monedas10cent;
+                            } else if (cambio >= 0.05 && totalMonedas5cent != 0) {
+                                monedas5cent = (int) (cambio / 0.05);
+                                System.out.printf("\tModena de 0.05 euros: %d\n", monedas5cent);
+                                cambio -= monedas5cent * 0.05;
+                                totalMonedas5cent -= monedas5cent;
+                            } else if (cambio >= 0.02 && totalMonedas2cent != 0) {
+                                monedas2cent = (int) (cambio / 0.02);
+                                System.out.printf("\tModena de 0.02 euros: %d\n", monedas2cent);
+                                cambio -= monedas2cent * 0.02;
+                                totalMonedas2cent -= monedas2cent;
+                            } else if (cambio >= 0.01 && totalMonedas1cent != 0) {
+                                monedas1cent = (int) (cambio / 0.01);
+                                System.out.printf("\tModena de 0.01 euros: %d\n", monedas1cent);
+                                cambio -= monedas1cent * 0.01; // Restar la cantidad dada (soluciona el problema)
+                                totalMonedas1cent -= monedas1cent;
+                            } else if (cambio == 0) {
+
+                            } else { // Si no se puede dar cambio con ninguna denominación
+                                if (cambio > 0.01) {
+                                    System.out.printf("No hay suficientes monedas/billetes para dar %.2f € de cambio restante.\n", cambio);
+                                }
+                                cambio = 0; // Forzamos la salida del bucle
+                            }
+                        }// fin del while que válida que el cambio sea mayor de 0
                     }
+
                     break;
                 case "d": //Mostrar el menú de administrador
+                    // Inicia el proceso de LOGIN para el menú de administrador.
                     System.out.print("Introduzca el usuario: ");
                     user = s.nextLine();
-                    System.out.print("Introduzca la clave: "); // Este es el bug que te mencioné!
+                    System.out.print("Introduzca la clave: ");
                     pass = s.nextLine();
 
-                    if (!user.equals(NOMBRE_ADMIN) && !pass.equals(ClAVE_ADMIN)) {
+                    // 💡 ¡BUG CORREGIDO!
+                    // La lógica original era: if (!user.equals(NOMBRE_ADMIN) && !pass.equals(ClAVE_ADMIN))
+                    // Eso es incorrecto. La lógica correcta es:
+                    // Si el usuario NO es admin O la clave NO es admin, entonces da error.
+                    if (!user.equals(NOMBRE_ADMIN) || !pass.equals(ClAVE_ADMIN)) {
                         System.out.print("Nombre o usuario incorrecto");
                         s.nextLine();
                     } else {
+                        // Si el login es correcto, entra en el bucle del menú de admin
                         do {
                             System.out.print("""
                                     
@@ -322,8 +504,12 @@ public class Main {
                                     
                                     Elige una opción (i-iii):\s""");
                             opAdmin = s.nextLine().toLowerCase();
+
+                            // Switch para las opciones de administrador
                             switch (opAdmin) {
                                 case "i": //Consulta el ingreso y el número de reservas
+                                    // Muestra las variables 'ingresosTotales' y 'reservasFinalizadas'
+                                    // que se actualizan durante el 'case "c"' (checkout).
                                     System.out.printf("""
                                                     
                                                     ╭─────────────────────────────────────────────────╮
@@ -338,6 +524,8 @@ public class Main {
                                     );
                                     break;
                                 case "ii": // Nos da información de la cantidad de monedas/billetes que nos quedan
+                                    // Muestra el estado actual de todas las variables 'totalBilletes...' y 'totalMonedas...'
+                                    // que se van decrementando durante el cálculo del cambio en el 'case "c"'.
                                     System.out.printf("""
                                                     
                                                     ╭───────────────────────────────────────╮
@@ -371,15 +559,16 @@ public class Main {
                                 default:
                                     System.out.println("Opción introducida no valida");
                             }
+                            // El bucle de admin continúa mientras 'salir' sea true
                         } while (salir);
                     }
                     break;
                 default:
+                    // Se ejecuta si 'op' no es "a", "b", "c", o "d".
                     System.out.print("Opción no válida. Inténtelo de nuevo.");
-                    break;
+
             }
+            // El bucle principal continúa mientras 'salir' sea true
         } while (salir);
     }
-
-
 }
