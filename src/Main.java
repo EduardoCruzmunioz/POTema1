@@ -60,6 +60,7 @@ public class Main {
 
         // Bucle principal del programa
         do {
+            for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
             // Nos muestra el menú
             System.out.print("""
                     ╭────────────────────────────────────────────╮
@@ -104,8 +105,10 @@ public class Main {
                     s.nextLine();
                     break;
                 case "b": //Reservar las habitaciones
+
                     // Inicia el submenú para reservar una habitación.
                     do {
+                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                         System.out.print("""
                                 
                                 ╭────────────────────────────────────╮
@@ -177,6 +180,8 @@ public class Main {
                                     System.out.println("Habitación asignada número 8 con fecha asignada " + fechaHab8.format(inputFormatter));
 
                                 } else System.out.println("Todas las habitaciones dobles están ocupadas");
+                                System.out.print("Pulse una tecla para volver al submenú");
+                                s.nextLine();
                                 break;
 
                             case "ii": // Lógica para reservar habitación INDIVIDUAL
@@ -195,18 +200,21 @@ public class Main {
                                     System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab10.format(inputFormatter));
 
                                 } else System.out.println("Las habitaciones individuales están ocupadas");
+                                System.out.print("Pulse una tecla para volver al submenú");
+                                s.nextLine();
                                 break;
                             case "iii": // Salir del submenú de reservas
-                                System.out.println("volviendo al menu principal");
+                                System.out.println("Volviendo al menu principal");
                                 break;
                             default:
                                 System.out.println("Opción introducida no válida");
                         }
-                        System.out.print("Pulse una tecla para volver al menú");
-                        s.nextLine();
+
                     } while (!tipoHabitacion.equalsIgnoreCase("iii"));
+
                     break;
                 case "c": //Realizar checkouts
+                    for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                     // Inicia el proceso de CHECK-OUT del cliente.
                     factura = false; // Resetea la bandera de factura
                     System.out.print("Introduzca el nombre del cliente: ");
@@ -306,7 +314,9 @@ public class Main {
 
                             //Calculamos los días que hay entre la entrada y salida del cliente
                             numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-                        } while (numNoches > 0);
+                            if (numNoches <= 0) System.out.println("La fecha de salida debe ser posterior a la fecha de entrada");
+
+                        } while (numNoches <= 0);
 
                         //Calculamos el importe de la factura
                         totalSinIva = tarifaNoche * numNoches;
@@ -358,12 +368,15 @@ public class Main {
                                 fechaSalida.format(ouputFormatter), huespedes, numNoches, tarifaNoche,
                                 totalSinIva, valorIVA, totalConIVA
                         );
+                        System.out.print("Pulse una tecla para ir al pago");
+                        s.nextLine();
 
                         // --- INICIO DEL PROCESO DE PAGO Y CAMBIO ---
 
                         do {
+                            for (int i = 0; i < 3; i++) System.out.println(); //Limpiar la pantalla
                             System.out.printf("""
-                                    precio sin IVA: %4.2f
+                                    Precio sin IVA: %4.2f
                                     IVA 21: %4.2f
                                     Precio con IVA: %4.2f
                                     """, totalSinIva, valorIVA, totalConIVA);
@@ -475,9 +488,11 @@ public class Main {
                             }
                         }// fin del while que válida que el cambio sea mayor de 0
                     }
-
+                    System.out.print("Pulse una tecla para volver al menú");
+                    s.nextLine();
                     break;
                 case "d": //Mostrar el menú de administrador
+                    for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                     // Inicia el proceso de LOGIN para el menú de administrador.
                     System.out.print("Introduzca el usuario: ");
                     user = s.nextLine();
@@ -494,6 +509,7 @@ public class Main {
                     } else {
                         // Si el login es correcto, entra en el bucle del menú de admin
                         do {
+                            for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                             System.out.print("""
                                     
                                     ╭────────────────────────────────────────────────────────────────────────────────────╮
@@ -524,6 +540,8 @@ public class Main {
                                             ingresosTotales,
                                             reservasFinalizadas
                                     );
+                                    System.out.print("Pulse una tecla para volver al menú");
+                                    s.nextLine();
                                     break;
                                 case "ii": // Nos da información de la cantidad de monedas/billetes que nos quedan
                                     // Muestra el estado actual de todas las variables 'totalBilletes...' y 'totalMonedas...'
@@ -553,6 +571,8 @@ public class Main {
                                             "5 €", totalBilletes5, "2 cent", totalMonedas2cent,
                                             "", "1 cent", totalMonedas1cent
                                     );
+                                    System.out.print("Pulse una tecla para volver al menú");
+                                    s.nextLine();
                                     break;
                                 case "iii": //apaga el programa
                                     salir = false;
