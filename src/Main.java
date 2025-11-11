@@ -234,7 +234,7 @@ public class Main {
                     switch (numHab) {
                         case "1", "2", "3", "4", "5", "6", "7", "8":// Habitaciones DOBLES
                             // Comprueba si el número de habitación Y el nombre del cliente coinciden.
-                            // Si coinciden, guarda la fecha de entrada y marca 'factura' como true.
+                            // Si coinciden, guarda la fecha de entrada y marca 'factura' como true
                             if (numHab.equals("1") && nombreHab1.equals(nombreCliente)) {
                                 fechaEntrada = fechaHab1;
                                 factura = true;
