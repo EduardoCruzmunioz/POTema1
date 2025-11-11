@@ -34,7 +34,8 @@ public class Main {
 
         int reservasFinalizadas = 0;
 
-        boolean salir = true;
+        boolean salir = true, volver = true;
+
         String op, opAdmin, tipoHabitacion;
 
         // Estado de las habitaciones: false = libre, true = ocupada (La habitación 9 y 10 son las individuales y las demás dobles)
@@ -492,43 +493,46 @@ public class Main {
                     s.nextLine();
                     break;
                 case "d": //Mostrar el menú de administrador
-                    for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
-                    // Inicia el proceso de LOGIN para el menú de administrador.
-                    System.out.print("Introduzca el usuario: ");
-                    user = s.nextLine();
-                    System.out.print("Introduzca la clave: ");
-                    pass = s.nextLine();
+                    do { //
+                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                        // Inicia el proceso de LOGIN para el menú de administrador.
+                        System.out.print("Introduzca el usuario: ");
+                        user = s.nextLine();
+                        System.out.print("Introduzca la clave: ");
+                        pass = s.nextLine();
 
-                    // 💡 ¡BUG CORREGIDO!
-                    // La lógica original era: if (!user.equals(NOMBRE_ADMIN) && !pass.equals(ClAVE_ADMIN))
-                    // Eso es incorrecto. La lógica correcta es:
-                    // Si el usuario NO es admin O la clave NO es admin, entonces da error.
-                    if (!user.equals(NOMBRE_ADMIN) || !pass.equals(ClAVE_ADMIN)) {
-                        System.out.print("Nombre o usuario incorrecto");
-                        s.nextLine();
-                    } else {
-                        // Si el login es correcto, entra en el bucle del menú de admin
-                        do {
-                            for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
-                            System.out.print("""
+                        // 💡 ¡BUG CORREGIDO!
+                        // La lógica original era: if (!user.equals(NOMBRE_ADMIN) && !pass.equals(ClAVE_ADMIN))
+                        // Eso es incorrecto. La lógica correcta es:
+                        // Si el usuario NO es admin O la clave NO es admin, entonces da error.
+                        if (!user.equals(NOMBRE_ADMIN) || !pass.equals(ClAVE_ADMIN)) {
+                            System.out.print("Nombre o usuario incorrecto");
+                            s.nextLine();
+                        } else {
+                            // Si el login es correcto, entra en el bucle del menú de admin
+                            do {
+                                for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                                System.out.print("""
                                     
                                     ╭────────────────────────────────────────────────────────────────────────────────────╮
                                     │                                 MENÚ ADMINISTRADOR                                 │
                                     ├────────────────────────────────────────────────────────────────────────────────────┤
                                     │ [i]   Consultar los ingresos totales y el número de reservas finalizadas.          │
                                     │ [ii]  Consultar las monedas restantes para el cambio.                              │
-                                    │ [iii] Apagar el software                                                           │
+                                    │ [iii] Volver menú principal                                                        │
+                                    │ [iv]  Apagar el software                                                           │
                                     ╰────────────────────────────────────────────────────────────────────────────────────╯
                                     
-                                    Elige una opción (i-iii):\s""");
-                            opAdmin = s.nextLine().toLowerCase();
+                                    Elige una opción (i-iv):\s""");
+                                opAdmin = s.nextLine().toLowerCase();
 
-                            // Switch para las opciones de administrador
-                            switch (opAdmin) {
-                                case "i": //Consulta el ingreso y el número de reservas
-                                    // Muestra las variables 'ingresosTotales' y 'reservasFinalizadas'
-                                    // que se actualizan durante el 'case "c"' (checkout).
-                                    System.out.printf("""
+                                // Switch para las opciones de administrador
+                                switch (opAdmin) {
+                                    case "i": //Consulta el ingreso y el número de reservas
+                                        // Muestra las variables 'ingresosTotales' y 'reservasFinalizadas'
+                                        // que se actualizan durante el 'case "c"' (checkout).
+                                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                                        System.out.printf("""
                                                     
                                                     ╭─────────────────────────────────────────────────╮
                                                     │       ESTADÍSTICAS HOTEL CIUDAD DE MARTOS       │
@@ -537,16 +541,17 @@ public class Main {
                                                     │ Reservas Finalizadas (Uds.) │ %17d │
                                                     ╰─────────────────────────────┴───────────────────╯
                                                     """,
-                                            ingresosTotales,
-                                            reservasFinalizadas
-                                    );
-                                    System.out.print("Pulse una tecla para volver al menú");
-                                    s.nextLine();
-                                    break;
-                                case "ii": // Nos da información de la cantidad de monedas/billetes que nos quedan
-                                    // Muestra el estado actual de todas las variables 'totalBilletes...' y 'totalMonedas...'
-                                    // que se van decrementando durante el cálculo del cambio en el 'case "c"'.
-                                    System.out.printf("""
+                                                ingresosTotales,
+                                                reservasFinalizadas
+                                        );
+                                        System.out.print("Pulse una tecla para volver al menú");
+                                        s.nextLine();
+                                        break;
+                                    case "ii": // Nos da información de la cantidad de monedas/billetes que nos quedan
+                                        // Muestra el estado actual de todas las variables 'totalBilletes...' y 'totalMonedas...'
+                                        // que se van decrementando durante el cálculo del cambio en el 'case "c"'.
+                                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                                        System.out.printf("""
                                                     
                                                     ╭───────────────────────────────────────╮
                                                     │       DESGLOSE DE CAMBIO (CAJA)       │
@@ -563,27 +568,34 @@ public class Main {
                                                     │ %-17s │ %-8s : %6d │
                                                     ╰───────────────────┴───────────────────╯
                                                     """, "500 €", totalBilletes500, "2 €", totalMonedas2e,
-                                            "200 €", totalBilletes200, "1 €", totalMonedas1e,
-                                            "100 €", totalBilletes100, "50 cent", totalMonedas50cent,
-                                            "50 €", totalBilletes50, "20 cent", totalMonedas20cent,
-                                            "20 €", totalBilletes20, "10 cent", totalMonedas10cent,
-                                            "10 €", totalBilletes10, "5C cent", totalMonedas5cent,
-                                            "5 €", totalBilletes5, "2 cent", totalMonedas2cent,
-                                            "", "1 cent", totalMonedas1cent
-                                    );
-                                    System.out.print("Pulse una tecla para volver al menú");
-                                    s.nextLine();
-                                    break;
-                                case "iii": //apaga el programa
-                                    salir = false;
-                                    System.out.println("Apagando programa");
-                                    break;
-                                default:
-                                    System.out.println("Opción introducida no valida");
-                            }
-                            // El bucle de admin continúa mientras 'salir' sea true
-                        } while (salir);
-                    }
+                                                "200 €", totalBilletes200, "1 €", totalMonedas1e,
+                                                "100 €", totalBilletes100, "50 cent", totalMonedas50cent,
+                                                " 50 €", totalBilletes50, "20 cent", totalMonedas20cent,
+                                                " 20 €", totalBilletes20, "10 cent", totalMonedas10cent,
+                                                " 10 €", totalBilletes10, " 5 cent", totalMonedas5cent,
+                                                "  5 €", totalBilletes5, " 2 cent", totalMonedas2cent,
+                                                "", " 1 cent", totalMonedas1cent
+                                        );
+                                        System.out.print("Pulse una tecla para volver al menú");
+                                        s.nextLine();
+                                        break;
+                                    case "iii": //Vuelve al menú principal
+                                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                                        System.out.println("Volviendo...");
+                                        volver = false;
+                                        break;
+                                    case "iv": //apaga el programa
+                                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                                        System.out.println("Apagando programa");
+                                        salir = false;
+                                        break;
+                                    default:
+                                        System.out.println("Opción introducida no valida");
+                                }
+                                // El bucle de admin continúa mientras 'salir' sea true
+                            } while (salir && volver);
+                        }
+                    }while(salir && volver);
                     break;
                 default:
                     // Se ejecuta si 'op' no es "a", "b", "c", o "d".
