@@ -35,17 +35,17 @@ public class Main {
         int reservasFinalizadas = 0;
 
         boolean salir = true, volver = true;
-        String op, opAdmin, tipoHabitacion;
+        String op, opAdmin, tipoHabitacion = "";
 
         // Estado de las habitaciones: false = libre, true = ocupada (La habitación 9 y 10 son las individuales y las demás dobles)
         // Nota: Esto sería más fácil de manejar con un array de booleanos.
-        boolean hab1 = false, hab2 = false, hab3 = false, hab4 = false, hab5 = false, hab6 = false, hab7 = false, hab8 = false, hab9 = false, hab10 = false;
+        boolean hab1 = true, hab2 = true, hab3 = true, hab4 = true, hab5 = true, hab6 = true, hab7 = true, hab8 = false, hab9 = true, hab10 = false;
         String nombreHab1 = "", nombreHab2 = "", nombreHab3 = "", nombreHab4 = "", nombreHab5 = "", nombreHab6 = "",
                 nombreHab7 = "", nombreHab8 = "", nombreHab9 = "", nombreHab10 = "";
-        String numHab, nombreCliente = "", telefono;
+        String nombreCliente = "", telefono;
         boolean factura = false;
 
-        int numReserva = 20251100;
+        int numReserva = 20251100, numHab;
         long numNoches = 0;
         int huespedes = 0;
 
@@ -92,7 +92,7 @@ public class Main {
                     }
                     for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                     // Muestra una tabla formateada con el estado (Libre/Ocupada) de las 10 habitaciones.
-                    // Usa operadores ternarios (hab1 ? "Ocupada" : "Libre") para determinar qué string mostrar.
+                    // Usa operadores ternarios (hab1) ¿? "Ocupada": "Libre" para determinar qué string mostrar.
                     System.out.printf("""
                             ╭────────────────────────────────────────────╮
                             │           HOTEL CIUDAD DE MARTOS           │
@@ -139,131 +139,133 @@ public class Main {
                         System.out.println("Se interrumpió la entrada");
                     }
                     // Inicia el submenú para reservar una habitación.
-                    do {
-                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
-                        System.out.print("""
-                                
-                                ╭────────────────────────────────────╮
-                                │          SELECCIONAR TIPO          │
-                                ├────────────────────────────────────┤
-                                │ [i] Habitación Doble               │
-                                │ [ii] Habitación Individual         │
-                                │                                    │
-                                ├────────────────────────────────────┤
-                                │ [iii] Volver al menú anterior      │
-                                ╰────────────────────────────────────╯
-                                
-                                Introduzca una opción (i - iii):\s""");
-                        tipoHabitacion = s.nextLine();
-                        if (!tipoHabitacion.equalsIgnoreCase("iii")) {
+                    if (hab1 && hab2 && hab3 && hab4 && hab5 && hab6 && hab7 && hab8 && hab9 && hab10) {
+                        System.out.println("Todas las habitaciónes están ocupadas");
+                        s.nextLine();
+                    } else {
+                        do {
                             for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
-                            System.out.print("Introduzca un nombre para la reserva: ");
-                            nombreCliente = s.nextLine().toLowerCase();
-                        }
-
-                        // Switch para gestionar el tipo de habitación a reservar
-                        switch (tipoHabitacion) {
-                            case "i": // Lógica para reservar habitación DOBLE
-                                if (!hab1) {
-                                    fechaHab1 = LocalDate.now();
-                                    hab1 = true;
-                                    nombreHab1 = nombreCliente;
-                                    System.out.println("Habitación asignada número 1 con fecha asignada " + fechaHab1.format(inputFormatter));
-
-                                } else if (!hab2) {
-                                    fechaHab2 = LocalDate.now();
-                                    hab2 = true;
-                                    nombreHab2 = nombreCliente;
-                                    System.out.println("Habitación asignada número 2 con fecha asignada " + fechaHab2.format(inputFormatter));
-
-                                } else if (!hab3) {
-                                    fechaHab3 = LocalDate.now();
-                                    hab3 = true;
-                                    nombreHab3 = nombreCliente;
-                                    System.out.println("Habitación asignada número 3 con fecha asignada " + fechaHab3.format(inputFormatter));
-
-                                } else if (!hab4) {
-                                    fechaHab4 = LocalDate.now();
-                                    hab4 = true;
-                                    nombreHab4 = nombreCliente;
-                                    System.out.println("Habitación asignada número 4 con fecha asignada " + fechaHab4.format(inputFormatter));
-
-                                } else if (!hab5) {
-                                    fechaHab5 = LocalDate.now();
-                                    hab5 = true;
-                                    nombreHab5 = nombreCliente;
-                                    System.out.println("Habitación asignada número 5 con fecha asignada " + fechaHab5.format(inputFormatter));
-
-                                } else if (!hab6) {
-                                    fechaHab6 = LocalDate.now();
-                                    hab6 = true;
-                                    nombreHab6 = nombreCliente;
-                                    System.out.println("Habitación asignada número 6 con fecha asignada " + fechaHab6.format(inputFormatter));
-
-                                } else if (!hab7) {
-                                    fechaHab7 = LocalDate.now();
-                                    hab7 = true;
-                                    nombreHab7 = nombreCliente;
-                                    System.out.println("Habitación asignada número 7 con fecha asignada " + fechaHab7.format(inputFormatter));
-
-                                } else if (!hab8) {
-                                    fechaHab8 = LocalDate.now();
-                                    hab8 = true;
-                                    nombreHab8 = nombreCliente;
-                                    System.out.println("Habitación asignada número 8 con fecha asignada " + fechaHab8.format(inputFormatter));
-
-                                } else System.out.println("Todas las habitaciones dobles están ocupadas");
-                                System.out.print("Pulse una tecla para volver al submenú");
-                                s.nextLine();
-
-                                try { //Tiempo de espera
-                                    System.out.print("\nVolviendo al submenú");
-
-                                    for (int i = 0; i < 3; i++) {
-                                        Thread.sleep(450);
-                                        System.out.print(".");
-                                    }
-                                    System.out.println();
-
-                                } catch (InterruptedException e) {
-                                    System.out.println("Se interrumpió la salida");
+                            System.out.print("""
+                                    
+                                    ╭────────────────────────────────────╮
+                                    │          SELECCIONAR TIPO          │
+                                    ├────────────────────────────────────┤
+                                    │ [i] Habitación Doble               │
+                                    │ [ii] Habitación Individual         │
+                                    │                                    │
+                                    ├────────────────────────────────────┤
+                                    │ [iii] Volver al menú anterior      │
+                                    ╰────────────────────────────────────╯
+                                    
+                                    Introduzca una opción (i - iii):\s""");
+                            tipoHabitacion = s.nextLine();
+                            if (tipoHabitacion.equalsIgnoreCase("i") || tipoHabitacion.equalsIgnoreCase("ii")) {
+                                if (tipoHabitacion.equalsIgnoreCase("ii") && (hab9 && hab10)) {
+                                    System.out.println("Las habitaciones individuales están ocupadas");
+                                } else if (tipoHabitacion.equalsIgnoreCase("i") &&
+                                        (hab1 && hab2 && hab3 && hab4 && hab5 && hab6 && hab7 && hab8)) {
+                                    System.out.println("Todas las habitaciones dobles están ocupadas");
+                                } else {
+                                    do {
+                                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
+                                        System.out.print("Introduzca un nombre para la reserva: ");
+                                        nombreCliente = s.nextLine().toLowerCase();
+                                        if (nombreCliente.isEmpty()) {
+                                            System.out.print("Debe introducir el nombre por favor.");
+                                            s.nextLine();
+                                        }
+                                    } while (nombreCliente.isEmpty());
                                 }
-                                break;
+                            }
 
-                            case "ii": // Lógica para reservar habitación INDIVIDUAL
-                                // Busca la primera habitación individual (9-10) que esté libre
-                                // y la asigna al cliente.
-                                if (!hab9) {
-                                    fechaHab9 = LocalDate.now();
-                                    hab9 = true;
-                                    nombreHab9 = nombreCliente;
-                                    System.out.println("Habitación asignada número 9 con fecha asignada " + fechaHab9.format(inputFormatter));
+                            // Switch para gestionar el tipo de habitación a reservar
+                            switch (tipoHabitacion) {
+                                case "i": // Lógica para reservar habitación DOBLE
+                                    if (!hab1) {
+                                        fechaHab1 = LocalDate.now();
+                                        hab1 = true;
+                                        nombreHab1 = nombreCliente;
+                                        System.out.println("Habitación asignada número 1 con fecha asignada " + fechaHab1.format(inputFormatter));
 
-                                } else if (!hab10) {
-                                    fechaHab10 = LocalDate.now();
-                                    hab10 = true;
-                                    nombreHab10 = nombreCliente;
-                                    System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab10.format(inputFormatter));
+                                    } else if (!hab2) {
+                                        fechaHab2 = LocalDate.now();
+                                        hab2 = true;
+                                        nombreHab2 = nombreCliente;
+                                        System.out.println("Habitación asignada número 2 con fecha asignada " + fechaHab2.format(inputFormatter));
 
-                                } else System.out.println("Las habitaciones individuales están ocupadas");
-                                System.out.print("Pulse una tecla para volver al submenú");
-                                s.nextLine();
-                                try { //Tiempo de espera
-                                    System.out.print("\nVolviendo al submenú");
+                                    } else if (!hab3) {
+                                        fechaHab3 = LocalDate.now();
+                                        hab3 = true;
+                                        nombreHab3 = nombreCliente;
+                                        System.out.println("Habitación asignada número 3 con fecha asignada " + fechaHab3.format(inputFormatter));
 
-                                    for (int i = 0; i < 3; i++) {
-                                        Thread.sleep(450);
-                                        System.out.print(".");
+                                    } else if (!hab4) {
+                                        fechaHab4 = LocalDate.now();
+                                        hab4 = true;
+                                        nombreHab4 = nombreCliente;
+                                        System.out.println("Habitación asignada número 4 con fecha asignada " + fechaHab4.format(inputFormatter));
+
+                                    } else if (!hab5) {
+                                        fechaHab5 = LocalDate.now();
+                                        hab5 = true;
+                                        nombreHab5 = nombreCliente;
+                                        System.out.println("Habitación asignada número 5 con fecha asignada " + fechaHab5.format(inputFormatter));
+
+                                    } else if (!hab6) {
+                                        fechaHab6 = LocalDate.now();
+                                        hab6 = true;
+                                        nombreHab6 = nombreCliente;
+                                        System.out.println("Habitación asignada número 6 con fecha asignada " + fechaHab6.format(inputFormatter));
+
+                                    } else if (!hab7) {
+                                        fechaHab7 = LocalDate.now();
+                                        hab7 = true;
+                                        nombreHab7 = nombreCliente;
+                                        System.out.println("Habitación asignada número 7 con fecha asignada " + fechaHab7.format(inputFormatter));
+
+                                    } else if (!hab8) {
+                                        fechaHab8 = LocalDate.now();
+                                        hab8 = true;
+                                        nombreHab8 = nombreCliente;
+                                        System.out.println("Habitación asignada número 8 con fecha asignada " + fechaHab8.format(inputFormatter));
+
                                     }
-                                    System.out.println();
+                                    System.out.print("Pulse una tecla para volver al submenú");
 
-                                } catch (InterruptedException e) {
-                                    System.out.println("Se interrumpió la salida");
-                                }
-                                break;
-                            case "iii": // Salir del submenú de reservas
+                                    break;
+
+                                case "ii": // Lógica para reservar habitación INDIVIDUAL
+                                    // Busca la primera habitación individual (9-10) que esté libre
+                                    // y la asigna al cliente.
+                                    if (!hab9) {
+                                        fechaHab9 = LocalDate.now();
+                                        hab9 = true;
+                                        nombreHab9 = nombreCliente;
+                                        System.out.println("Habitación asignada número 9 con fecha asignada " + fechaHab9.format(inputFormatter));
+
+                                    } else if (!hab10) {
+                                        fechaHab10 = LocalDate.now();
+                                        hab10 = true;
+                                        nombreHab10 = nombreCliente;
+                                        System.out.println("Habitación asignada número 10 con fecha asignada " + fechaHab10.format(inputFormatter));
+                                    }
+
+                                    System.out.print("Pulse una tecla para volver al submenú");
+
+                                    break;
+                                case "iii": // Salir del submenú de reservas
+                                    System.out.print("Pulse una tecla para volver al menú principal");
+                                    break;
+                                default:
+                                    System.out.print("Opción introducida no válida. ");
+                                    System.out.print("Pulse cualquier tecla para continuar ");
+
+                            }
+
+                            s.nextLine();
                             try { //Tiempo de espera
-                                System.out.print("\nVolviendo al menú principal");
+                                System.out.print((tipoHabitacion.equalsIgnoreCase("iii")) ?
+                                        "\nVolviendo al menú principal" : "\nVolviendo al submenú");
 
                                 for (int i = 0; i < 3; i++) {
                                     Thread.sleep(500);
@@ -274,12 +276,8 @@ public class Main {
                             } catch (InterruptedException e) {
                                 System.out.println("Se interrumpió la salida");
                             }
-                            break;
-                            default:
-                                System.out.println("Opción introducida no válida");
-                        }
-
-                    } while (!tipoHabitacion.equalsIgnoreCase("iii"));
+                        } while (!tipoHabitacion.equalsIgnoreCase("iii"));
+                    }
 
                     break;
                 case "c": //Realizar checkouts
@@ -302,83 +300,104 @@ public class Main {
                         System.out.print("Introduzca el número de teléfono: ");
                         telefono = s.nextLine();
                         if (telefono.length() != 9) {
-                            System.out.println("El número debe ser de longitud 9");
+                            System.out.print("El número debe ser de longitud 9");
                             s.nextLine();
+                            for (int i = 0; i < 50; i++) {
+                                System.out.println();
+                            }
                         }
                     } while (telefono.length() != 9);
-                    System.out.print("Introduzca el número de la habitación (1 al 10): ");
-                    numHab = s.nextLine();
+                    do {
+                        System.out.print("Introduzca el número de la habitación (1 al 10): ");
+                        numHab = Integer.parseInt(s.nextLine());
+                        if (numHab < 1 || numHab > 10) {
+                            System.out.println("Solo se permite las habitaciones del 1 al 10");
+                            System.out.print("Anda pulsa para continuar que estas tontico");
+                            s.nextLine();
+                        }
+                    } while (numHab < 1 || numHab > 10);
 
                     // Switch para identificar la habitación y verificar el nombre del cliente
                     switch (numHab) {
-                        case "1", "2", "3", "4", "5", "6", "7", "8":// Habitaciones DOBLES
+                        case 1, 2, 3, 4, 5, 6, 7, 8:// Habitaciones DOBLES
                             // Comprueba si el número de habitación Y el nombre del cliente coinciden.
+
                             // Si coinciden, guarda la fecha de entrada y marca 'factura' como true
-                            if (numHab.equals("1") && nombreHab1.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab1;
-                                factura = true;
-                                hab1 = false;
+                            if (nombreCliente.isEmpty()) //Solo entra si el nombreCliente no está vacío
+                                System.out.println("No se ha rellenado correctamente el formulario");
+                            else {
+                                if (numHab == 1 && nombreHab1.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab1;
+                                    factura = true;
+                                    hab1 = false;
+                                }
+                                if (numHab == 2 && nombreHab2.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab2;
+                                    factura = true;
+                                    hab2 = false;
+                                }
+                                if (numHab == 3 && nombreHab3.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab3;
+                                    factura = true;
+                                    hab3 = false;
+                                }
+                                if (numHab == 4 && nombreHab4.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab4;
+                                    factura = true;
+                                    hab4 = false;
+                                }
+                                if (numHab == 5 && nombreHab5.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab5;
+                                    factura = true;
+                                    hab5 = false;
+                                }
+                                if (numHab == 6 && nombreHab6.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab6;
+                                    factura = true;
+                                    hab6 = false;
+                                }
+                                if (numHab == 7 && nombreHab7.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab7;
+                                    factura = true;
+                                    hab7 = false;
+                                }
+                                if (numHab == 8 && nombreHab8.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab8;
+                                    factura = true;
+                                    hab8 = false;
+                                }
+
+                                // Asigna los valores para la factura de habitación doble
+                                huespedes = 2;
+                                tarifaNoche = PRECIO_HABITACION_DOBLE;
                             }
-                            if (numHab.equals("2") && nombreHab2.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab2;
-                                factura = true;
-                                hab2 = false;
-                            }
-                            if (numHab.equals("3") && nombreHab3.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab3;
-                                factura = true;
-                                hab3 = false;
-                            }
-                            if (numHab.equals("4") && nombreHab4.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab4;
-                                factura = true;
-                                hab4 = false;
-                            }
-                            if (numHab.equals("5") && nombreHab5.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab5;
-                                factura = true;
-                                hab5 = false;
-                            }
-                            if (numHab.equals("6") && nombreHab6.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab6;
-                                factura = true;
-                                hab6 = false;
-                            }
-                            if (numHab.equals("7") && nombreHab7.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab7;
-                                factura = true;
-                                hab7 = false;
-                            }
-                            if (numHab.equals("8") && nombreHab8.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab8;
-                                factura = true;
-                                hab8 = false;
-                            }
-                            // Asigna los valores para la factura de habitación doble
-                            huespedes = 2;
-                            tarifaNoche = PRECIO_HABITACION_DOBLE;
                             break;
-                        case "9", "10": // Habitaciones INDIVIDUALES
+                        case 9, 10: // Habitaciones INDIVIDUALES
                             // Misma lógica que las dobles, pero para habitaciones 9 y 10.
-                            if (numHab.equals("9") && nombreHab9.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab9;
-                                factura = true;
-                                hab9 = false;
+                            if (nombreCliente.isEmpty()) //Solo entra si el nombreCliente no está vacío
+                                System.out.println("No se ha rellenado correctamente el formulario");
+                            else {
+                                if (numHab == 9 && nombreHab9.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab9;
+                                    factura = true;
+                                    hab9 = false;
+                                }
+                                if (numHab == 10 && nombreHab10.equals(nombreCliente)) {
+                                    fechaEntrada = fechaHab10;
+                                    factura = true;
+                                    hab10 = false;
+                                }
+                                // Asigna los valores para la factura de habitación individual
+                                huespedes = 1;
+                                tarifaNoche = PRECIO_HABITACION_INDIVIDUAL;
                             }
-                            if (numHab.equals("10") && nombreHab10.equals(nombreCliente)) {
-                                fechaEntrada = fechaHab10;
-                                factura = true;
-                                hab10 = false;
-                            }
-                            // Asigna los valores para la factura de habitación individual
-                            huespedes = 1;
-                            tarifaNoche = PRECIO_HABITACION_INDIVIDUAL;
                             break;
                         default:
                             System.out.println("Habitación introducida no existente compruebe de nuevo");
                     }
 
-                    if (!factura) { // Si 'factura' fue false (cliente/habitación no coinciden),
+
+                    if (!factura && numHab > 0 && numHab < 11) { // Si 'factura' fue false (cliente/habitación no coinciden), y está dentro del rango de las habitaciones
 
                         System.out.println("No se han podido verificar los datos de la reserva.");
                         System.out.println("El nombre del cliente no coincide con la habitación indicada.");
@@ -387,13 +406,30 @@ public class Main {
 
                         do {// validación de que las noches no sean negativas
                             //Solicitamos la factura como un String para después pasarla a un LocalDate
-                            System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
-                            fecha = s.nextLine();
+                            do {
+                                System.out.print("Introduzca la fecha de salida (dd/MM/yyyy): ");
+                                fecha = s.nextLine();
+                                if (fecha.isEmpty()) {
+                                    System.out.print("Debes introducir una fecha");
+                                    s.nextLine();
+
+                                    for (int i = 0; i < 50; i++) {
+                                        System.out.println();
+                                    }
+                                }
+                            } while (fecha.isEmpty());
+
                             fechaSalida = LocalDate.parse(fecha, inputFormatter);
 
                             //Calculamos los días que hay entre la entrada y salida del cliente
                             numNoches = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-                            if (numNoches <= 0) System.out.println("La fecha de salida debe ser posterior a la fecha de entrada");
+                            if (numNoches <= 0) {
+                                System.out.printf("La fecha de salida debe ser posterior a la fecha %s\n", fechaEntrada.format(ouputFormatter));
+                                s.nextLine();
+                                for (int i = 0; i < 50; i++) {
+                                    System.out.println();
+                                }
+                            }
 
                         } while (numNoches <= 0);
 
@@ -478,7 +514,7 @@ public class Main {
                         if (cambio == 0) System.out.println("\tEl cambio es exacto");
 
                         // Bucle para calcular el desglose del cambio
-                        // Va desde la denominación más alta (500€) a la más baja (0.01€)
+                        // Va desde la denominación más alta (500 €) a la más baja (0.01 €)
                         while (cambio > 0) {
 
                             // Redondeo en cada iteración para mitigar errores de coma flotante
@@ -783,9 +819,11 @@ public class Main {
                 default:
                     // Se ejecuta si 'op' no es "a", "b", "c", o "d".
                     System.out.print("Opción no válida. Inténtelo de nuevo.");
+                    s.nextLine();
 
             }
             // El bucle principal continúa mientras 'salir' sea true
-        } while (salir);
+        }
+        while (salir);
     }
 }
