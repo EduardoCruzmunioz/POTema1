@@ -34,7 +34,7 @@ public class Main {
 
         int reservasFinalizadas = 0;
 
-        boolean salir = true;
+        boolean salir = true, volver = true;
         String op, opAdmin, tipoHabitacion;
 
         // Estado de las habitaciones: false = libre, true = ocupada (La habitación 9 y 10 son las individuales y las demás dobles)
@@ -79,6 +79,18 @@ public class Main {
             // Switch principal que gestiona las opciones del menú
             switch (op) {
                 case "a": //Ver estado de ocupación
+                    try { //Tiempo de espera
+                        System.out.print("\nRedirigiéndose a la opción a");
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(500);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+
+                    } catch (InterruptedException e) {
+                        System.out.println("Se interrumpió la entrada");
+                    }
+                    for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                     // Muestra una tabla formateada con el estado (Libre/Ocupada) de las 10 habitaciones.
                     // Usa operadores ternarios (hab1 ? "Ocupada" : "Libre") para determinar qué string mostrar.
                     System.out.printf("""
@@ -103,9 +115,29 @@ public class Main {
                             """, (hab1 ? "Ocupada" : "Libre"), (hab2 ? "Ocupada" : "Libre"), (hab3 ? "Ocupada" : "Libre"), (hab4 ? "Ocupada" : "Libre"), (hab5 ? "Ocupada" : "Libre"), (hab6 ? "Ocupada" : "Libre"), (hab7 ? "Ocupada" : "Libre"), (hab8 ? "Ocupada" : "Libre"), (hab9 ? "Ocupada" : "Libre"), (hab10 ? "Ocupada" : "Libre"));
                     System.out.print("Pulse una tecla para volver al menú");
                     s.nextLine();
+                    try {//Tiempo de espera
+                        System.out.print("\nVolviendo al menú");
+
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(500);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+                    } catch (InterruptedException e) {
+                        System.out.println("Se interrumpió la salida");
+                    }
                     break;
                 case "b": //Reservar las habitaciones
-
+                    try { //Tiempo de espera
+                        System.out.print("\nRedirigiéndose a la opción b");
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(500);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+                    } catch (InterruptedException e) {
+                        System.out.println("Se interrumpió la entrada");
+                    }
                     // Inicia el submenú para reservar una habitación.
                     do {
                         for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
@@ -124,6 +156,7 @@ public class Main {
                                 Introduzca una opción (i - iii):\s""");
                         tipoHabitacion = s.nextLine();
                         if (!tipoHabitacion.equalsIgnoreCase("iii")) {
+                            for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                             System.out.print("Introduzca un nombre para la reserva: ");
                             nombreCliente = s.nextLine().toLowerCase();
                         }
@@ -182,6 +215,19 @@ public class Main {
                                 } else System.out.println("Todas las habitaciones dobles están ocupadas");
                                 System.out.print("Pulse una tecla para volver al submenú");
                                 s.nextLine();
+
+                                try { //Tiempo de espera
+                                    System.out.print("\nVolviendo al submenú");
+
+                                    for (int i = 0; i < 3; i++) {
+                                        Thread.sleep(450);
+                                        System.out.print(".");
+                                    }
+                                    System.out.println();
+
+                                } catch (InterruptedException e) {
+                                    System.out.println("Se interrumpió la salida");
+                                }
                                 break;
 
                             case "ii": // Lógica para reservar habitación INDIVIDUAL
@@ -202,10 +248,33 @@ public class Main {
                                 } else System.out.println("Las habitaciones individuales están ocupadas");
                                 System.out.print("Pulse una tecla para volver al submenú");
                                 s.nextLine();
+                                try { //Tiempo de espera
+                                    System.out.print("\nVolviendo al submenú");
+
+                                    for (int i = 0; i < 3; i++) {
+                                        Thread.sleep(450);
+                                        System.out.print(".");
+                                    }
+                                    System.out.println();
+
+                                } catch (InterruptedException e) {
+                                    System.out.println("Se interrumpió la salida");
+                                }
                                 break;
                             case "iii": // Salir del submenú de reservas
-                                System.out.println("Volviendo al menu principal");
-                                break;
+                            try { //Tiempo de espera
+                                System.out.print("\nVolviendo al menú principal");
+
+                                for (int i = 0; i < 3; i++) {
+                                    Thread.sleep(500);
+                                    System.out.print(".");
+                                }
+                                System.out.println();
+
+                            } catch (InterruptedException e) {
+                                System.out.println("Se interrumpió la salida");
+                            }
+                            break;
                             default:
                                 System.out.println("Opción introducida no válida");
                         }
@@ -214,6 +283,16 @@ public class Main {
 
                     break;
                 case "c": //Realizar checkouts
+                    try { //Tiempo de espera
+                        System.out.print("\nRedirigiéndose a la opción c");
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(500);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+                    } catch (InterruptedException e) {
+                        System.out.println("Se interrumpió la entrada");
+                    }
                     for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                     // Inicia el proceso de CHECK-OUT del cliente.
                     factura = false; // Resetea la bandera de factura
@@ -332,7 +411,7 @@ public class Main {
                             System.out.print("\nCalculando y generando factura, por favor espere");
 
                             for (int i = 0; i < 3; i++) {
-                                Thread.sleep(250);
+                                Thread.sleep(450);
                                 System.out.print(".");
                             }
                             // Añadimos un salto de línea final antes de mostrar la factura
@@ -342,10 +421,11 @@ public class Main {
                             System.out.println("Se interrumpió el cálculo de la factura.");
                         }
 
+                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                         //Aquí se pinta la factura
                         System.out.printf("""
                                         *******************************************************
-                                        * FACTURA DE ALOJAMIENTO               *
+                                        *               FACTURA DE ALOJAMIENTO                *
                                         *******************************************************
                                         
                                         Descripción: %s
@@ -392,6 +472,7 @@ public class Main {
                         // Redondeo inicial seguro para evitar problemas de precisión de 'double'
                         cambio = (Math.round(cambio * 100.0) / 100.0);
 
+                        for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                         System.out.println("Cambio a devolver: " + cambio);
 
                         if (cambio == 0) System.out.println("\tEl cambio es exacto");
@@ -490,8 +571,30 @@ public class Main {
                     }
                     System.out.print("Pulse una tecla para volver al menú");
                     s.nextLine();
+                    try { //Tiempo de espera
+                        System.out.print("\nVolviendo al menú");
+
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(400);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+
+                    } catch (InterruptedException e) {
+                        System.out.println("Se interrumpió la salida");
+                    }
                     break;
                 case "d": //Mostrar el menú de administrador
+                    try { //Tiempo de espera
+                        System.out.print("\nRedirigiéndose a la opción d");
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(500);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+                    } catch (InterruptedException e) {
+                        System.out.println("Se interrumpió la entrada");
+                    }
                     for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                     // Inicia el proceso de LOGIN para el menú de administrador.
                     System.out.print("Introduzca el usuario: ");
@@ -505,9 +608,28 @@ public class Main {
                     // Si el usuario NO es admin O la clave NO es admin, entonces da error.
                     if (!user.equals(NOMBRE_ADMIN) || !pass.equals(ClAVE_ADMIN)) {
                         System.out.print("Nombre o usuario incorrecto");
-                        s.nextLine();
+                        try { //Tiempo de espera
+                            System.out.print("\nVolviendo al menú principal");
+                            for (int i = 0; i < 3; i++) {
+                                Thread.sleep(425);
+                                System.out.print(".");
+                            }
+                            System.out.println();
+                        } catch (InterruptedException e) {
+                            System.out.println("Se interrumpió la entrada");
+                        }
                     } else {
                         // Si el login es correcto, entra en el bucle del menú de admin
+                        try { //Tiempo de espera
+                            System.out.print("\nMostrando menú");
+                            for (int i = 0; i < 3; i++) {
+                                Thread.sleep(500);
+                                System.out.print(".");
+                            }
+                            System.out.println();
+                        } catch (InterruptedException e) {
+                            System.out.println("Se interrumpió la entrada");
+                        }
                         do {
                             for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                             System.out.print("""
@@ -517,7 +639,8 @@ public class Main {
                                     ├────────────────────────────────────────────────────────────────────────────────────┤
                                     │ [i]   Consultar los ingresos totales y el número de reservas finalizadas.          │
                                     │ [ii]  Consultar las monedas restantes para el cambio.                              │
-                                    │ [iii] Apagar el software                                                           │
+                                    │ [iii] Volver al menú principal.                                                    │
+                                    │ [iv] Apagar el software                                                            │
                                     ╰────────────────────────────────────────────────────────────────────────────────────╯
                                     
                                     Elige una opción (i-iii):\s""");
@@ -528,6 +651,17 @@ public class Main {
                                 case "i": //Consulta el ingreso y el número de reservas
                                     // Muestra las variables 'ingresosTotales' y 'reservasFinalizadas'
                                     // que se actualizan durante el 'case "c"' (checkout).
+                                    try { //Tiempo de espera
+                                        System.out.print("\nRedirigiéndose a la opción i");
+                                        for (int i = 0; i < 3; i++) {
+                                            Thread.sleep(400);
+                                            System.out.print(".");
+                                        }
+                                        System.out.println();
+                                    } catch (InterruptedException e) {
+                                        System.out.println("Se interrumpió la entrada");
+                                    }
+                                    for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                                     System.out.printf("""
                                                     
                                                     ╭─────────────────────────────────────────────────╮
@@ -542,10 +676,33 @@ public class Main {
                                     );
                                     System.out.print("Pulse una tecla para volver al menú");
                                     s.nextLine();
+                                    try { //Tiempo de espera
+                                        System.out.print("\nVolviendo al menú");
+
+                                        for (int i = 0; i < 3; i++) {
+                                            Thread.sleep(500);
+                                            System.out.print(".");
+                                        }
+                                        System.out.println();
+
+                                    } catch (InterruptedException e) {
+                                        System.out.println("Se interrumpió la salida");
+                                    }
                                     break;
                                 case "ii": // Nos da información de la cantidad de monedas/billetes que nos quedan
                                     // Muestra el estado actual de todas las variables 'totalBilletes...' y 'totalMonedas...'
                                     // que se van decrementando durante el cálculo del cambio en el 'case "c"'.
+                                    try { //Tiempo de espera
+                                        System.out.print("\nRedirigiéndose a la opción ii");
+                                        for (int i = 0; i < 3; i++) {
+                                            Thread.sleep(400);
+                                            System.out.print(".");
+                                        }
+                                        System.out.println();
+                                    } catch (InterruptedException e) {
+                                        System.out.println("Se interrumpió la entrada");
+                                    }
+                                    for (int i = 0; i < 50; i++) System.out.println(); //Limpiar la pantalla
                                     System.out.printf("""
                                                     
                                                     ╭───────────────────────────────────────╮
@@ -573,16 +730,54 @@ public class Main {
                                     );
                                     System.out.print("Pulse una tecla para volver al menú");
                                     s.nextLine();
+                                    try { //Tiempo de espera
+                                        System.out.print("\nVolviendo al menú");
+
+                                        for (int i = 0; i < 3; i++) {
+                                            Thread.sleep(250);
+                                            System.out.print(".");
+                                        }
+                                        System.out.println();
+
+                                    } catch (InterruptedException e) {
+                                        System.out.println("Se interrumpió la salida");
+                                    }
                                     break;
                                 case "iii": //apaga el programa
+                                    volver = false;
+                                    try { //Tiempo de espera
+                                        System.out.print("\nVolviendo al menú principal");
+
+                                        for (int i = 0; i < 3; i++) {
+                                            Thread.sleep(500);
+                                            System.out.print(".");
+                                        }
+                                        System.out.println();
+
+                                    } catch (InterruptedException e) {
+                                        System.out.println("Se interrumpió el proceso");
+                                    }
+                                    break;
+                                case "iv": //apaga el programa
                                     salir = false;
-                                    System.out.println("Apagando programa");
+                                    try { //Tiempo de espera
+                                        System.out.print("\nApagando programa");
+
+                                        for (int i = 0; i < 3; i++) {
+                                            Thread.sleep(500);
+                                            System.out.print(".");
+                                        }
+                                        System.out.println();
+
+                                    } catch (InterruptedException e) {
+                                        System.out.println("Se interrumpió el proceso");
+                                    }
                                     break;
                                 default:
                                     System.out.println("Opción introducida no valida");
                             }
                             // El bucle de admin continúa mientras 'salir' sea true
-                        } while (salir);
+                        } while (salir && volver);
                     }
                     break;
                 default:
