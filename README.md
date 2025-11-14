@@ -38,7 +38,7 @@ Para el desarrollo se ha hecho uso de las clases `LocalDate` de Java para toda l
 
 ## REQUISITOS MÍNIMOS 💻
 Para poder descargar y utilizar el programa, es necesario tener instalado el siguiente programa:
-- Java Runtime Envrioment (JRE)
+- Java Runtime Envrioment (JRE 25)
 
 > [!WARNING]
 > Si no tiene Java instalado o la versión es incorrecta, el programa no se ejecutará. Asegúrese de tener una versión compatible antes de continuar.
