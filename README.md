@@ -99,7 +99,7 @@ Al seleccionar la opción **(c)**, se iniciará el proceso de salida de un clien
 
 `[!imagen]`
 
-- [cite_start]**FACTURA Y PAGO**: Se generará una factura por pantalla con toda la información requerida (nombre, fechas, noches, tarifa, subtotal, IVA del 21% y TOTAL). [cite: 37, 73-83]
+- **FACTURA Y PAGO**: Se generará una factura por pantalla con toda la información requerida (nombre, fechas, noches, tarifa, subtotal, IVA del 21% y TOTAL). [cite: 37, 73-83]
 
 `[!imagen]`
 
