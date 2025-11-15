@@ -64,7 +64,7 @@ public class Main {
                 \t┣┫┃┃ ┃ ┣ ┃   ┃ ┃┃┃┃┃┣┫┃┃  ┃┃┣   ┃┃┃┣┫┣┫ ┃ ┃┃┗┓
                 \t┛┗┗┛ ┻ ┗┛┗┛  ┗┛┻┗┛┻┛┛┗┻┛  ┻┛┗┛  ┛ ┗┛┗┛┗ ┻ ┗┛┗┛""");
 
-        /*try { //Tiempo de espera
+        try { //Tiempo de espera
             System.out.print("\n\n\tCargando");
             for (int i = 0; i < 3; i++) {
                 Thread.sleep(750);
@@ -74,7 +74,7 @@ public class Main {
 
         } catch (InterruptedException e) {
             System.out.println("Se interrumpió la salida");
-        }*/
+        }
 
 
         // Bucle principal del programa
