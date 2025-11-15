@@ -85,6 +85,7 @@ d. Menú de Administrador
 Al seleccionar la opción **(a)**, el programa mostrará el estado actual de las 10 habitaciones del hotel, indicando cuáles están libres y cuáles ocupadas.
 
 ![Estado de ocupación](capturas/estado_ocupacion.png)
+
 ---
 ### RESERVAR UNA HABITACIÓN
 Al seleccionar la opción **(b)**, se puede registrar una nueva reserva. El software registrará automáticamente la fecha de entrada y asignará una habitación (doble o individual) según la disponibilidad.
@@ -156,4 +157,4 @@ Una vez dentro, el menú de administrador ofrece las siguientes opciones (según
 ## COLABORADORES 🤝
 
 - Eduardo Cruz Muñoz / Enlace GitHub: https://github.com/EduardoCruzmunioz
-- Alberto Viveros / Enlace GitHub: 
+- Alberto Viveros / Enlace GitHub: https://github.com/AlbertoViveros
