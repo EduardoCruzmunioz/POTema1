@@ -115,6 +115,7 @@ Al seleccionar la opción **(c)**, se iniciará el proceso de salida de un clien
 
 ![Pago completado](capturas/pago_completado.png)
 
+
 > [!TIP]
 > **CAMBIO EFICIENTE**
 > El cambio se calculará asegurando que se entrega en el **menor número de billetes y monedas posibles**.
