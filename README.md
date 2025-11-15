@@ -32,8 +32,6 @@ El hotel dispone de **10 habitaciones** en total, de las cuales 8 son dobles y 2
 > * Habitación doble: 60€ por noche
 > * Habitación individual: 45€ por noche
 
-Para el desarrollo se ha hecho uso de las clases `LocalDate` de Java para toda la gestión de fechas.
-
 ---
 
 ## REQUISITOS MÍNIMOS 💻
@@ -46,9 +44,12 @@ Para poder descargar y utilizar el programa, es necesario tener instalado el sig
 Para comprobar la versión de Java que tiene instalado debe realizar los siguientes pasos:
 - Abrir la consola del Símbolo del sistema (buscar en la barra de búsqueda de Windows)
 ![Abrir consola](capturas/abrir_consola.png)
-- 
+
 - Y a continuación, escribir el comando "java -version"
   ![Versión de Java](capturas/java_version.png)
+
+- En caso de no tener dicha version deberá descargarla:  
+  https://www.oracle.com/es/java/technologies/downloads/#jdk25-windows
 
 ---
 
@@ -63,10 +64,9 @@ Nos dirigimos a la ubicación dónde tengamos la carpeta comprimida y la descomp
 
 Siga la ruta de directorios hasta encontrar el archivo `.bat` (ejecutable para Windows).
 ![Ruta al ejecutable](capturas/ruta_bat.png)
-![Ejecutable del programa](capturas/ejecutable_bat.png)
 
 Este es el archivo ejecutable para iniciar el programa.
-`[!imagen]`
+![Ejecutable del programa](capturas/ejecutable_bat.png)
 
 ---
 
@@ -100,7 +100,7 @@ Al seleccionar la opción **(c)**, se iniciará el proceso de salida de un clien
 
 ![Cálculo de estancia](capturas/calculo_estancia.png)
 
-- **FACTURA Y PAGO**: Se generará una factura por pantalla con toda la información requerida (nombre, fechas, noches, tarifa, subtotal, IVA del 21% y TOTAL). [cite: 37, 73-83]
+- **FACTURA Y PAGO**: Se generará una factura por pantalla con toda la información requerida (nombre, fechas, noches, tarifa, subtotal, IVA del 21% y TOTAL).
 
 ![Factura del checkout](capturas/factura.png)
 
