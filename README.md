@@ -45,9 +45,10 @@ Para poder descargar y utilizar el programa, es necesario tener instalado el sig
 
 Para comprobar la versión de Java que tiene instalado debe realizar los siguientes pasos:
 - Abrir la consola del Símbolo del sistema (buscar en la barra de búsqueda de Windows)
-`[!imagen]`
+![Abrir consola](capturas/abrir_consola.png)
+- 
 - Y a continuación, escribir el comando "java -version"
-`[!imagen]`
+  ![Versión de Java](capturas/java_version.png)
 
 ---
 
@@ -55,14 +56,14 @@ Para comprobar la versión de Java que tiene instalado debe realizar los siguien
 (Esta sección asume que el método de entrega es el mismo que el del proyecto Mevents, cumpliendo con la entrega de un ejecutable)
 
 Abra la pestaña de "Code", y dentro de las opciones descargue la carpeta comprimida en un archivo .ZIP en el botón "Download ZIP".
-`[!imagen]`
+![Descargar ZIP](capturas/download_zip.png)
 
 Nos dirigimos a la ubicación dónde tengamos la carpeta comprimida y la descomprimimos.
-`[!imagen]`
+![Descomprimir ZIP](capturas/descomprimir_zip.png)
 
 Siga la ruta de directorios hasta encontrar el archivo `.bat` (ejecutable para Windows).
-`[!imagen]`
-`[!imagen]`
+![Ruta al ejecutable](capturas/ruta_bat.png)
+![Ejecutable del programa](capturas/ejecutable_bat.png)
 
 Este es el archivo ejecutable para iniciar el programa.
 `[!imagen]`
@@ -77,19 +78,18 @@ b. Reservar una habitación
 c. Realizar el checkout de una habitación
 d. Menú de Administrador
 
-`[!imagen]`
+![Menú principal](capturas/menu_principal.png)
 
 ---
 ### VER EL ESTADO DE OCUPACIÓN
 Al seleccionar la opción **(a)**, el programa mostrará el estado actual de las 10 habitaciones del hotel, indicando cuáles están libres y cuáles ocupadas.
 
-`[!imagen]`
-
+![Estado de ocupación](capturas/estado_ocupacion.png)
 ---
 ### RESERVAR UNA HABITACIÓN
 Al seleccionar la opción **(b)**, se puede registrar una nueva reserva. El software registrará automáticamente la fecha de entrada y asignará una habitación (doble o individual) según la disponibilidad.
 
-`[!imagen]`
+![Reservar habitación](capturas/reservar_habitacion.png)
 
 ---
 ### REALIZAR EL CHECKOUT
@@ -97,11 +97,11 @@ Al seleccionar la opción **(c)**, se iniciará el proceso de salida de un clien
 
 - **CÁLCULO DE ESTANCIA**: Para simular el paso de los días, el programa preguntará por el día de salida (en formato dd/MM/yyyy). Usando la fecha de entrada registrada y esta fecha de salida, el software calculará el número total de noches y el precio de la estancia.
 
-`[!imagen]`
+![Cálculo de estancia](capturas/calculo_estancia.png)
 
 - **FACTURA Y PAGO**: Se generará una factura por pantalla con toda la información requerida (nombre, fechas, noches, tarifa, subtotal, IVA del 21% y TOTAL). [cite: 37, 73-83]
 
-`[!imagen]`
+![Factura del checkout](capturas/factura.png)
 
 > [!NOTE]
 > **PAGO AL CONTADO**
@@ -109,23 +109,23 @@ Al seleccionar la opción **(c)**, se iniciará el proceso de salida de un clien
 
 - **CÁLCULO DEL CAMBIO**:
     - Si la cantidad introducida es insuficiente, el pago será rechazado y se volverá a solicitar.
-    `[!imagen]`
-    - Si la cantidad es superior al total, el programa calculará el cambio a devolver.
+      ![Pago insuficiente](capturas/pago_insuficiente.png)
+      - Si la cantidad es superior al total, el programa calculará el cambio a devolver.
     - Una vez el pago se ha completado, la habitación se marcará automáticamente como **libre**.
 
-`[!imagen]`
+![Pago completado](capturas/pago_completado.png)
 
 > [!TIP]
 > **CAMBIO EFICIENTE**
 > El cambio se calculará asegurando que se entrega en el **menor número de billetes y monedas posibles**.
 
-`[!imagen]`
+![Cambio calculado](capturas/cambio.png)
 
 ---
 ### MENÚ DE ADMINISTRADOR
 Para acceder a la opción **(d)**, el software solicitará un **usuario y contraseña**. Si las credenciales son incorrectas, se denegará el acceso.
 
-`[!imagen]`
+![Acceso administrador](capturas/login_admin.png)
 
 > [!IMPORTANT]
 > **Credenciales de Acceso (Según el código):**
@@ -137,18 +137,18 @@ Una vez dentro, el menú de administrador ofrece las siguientes opciones (según
 
 - **i. Consultar los ingresos totales y el número de reservas finalizadas**.
   - Esta opción muestra el total facturado por el hotel y cuántos checkouts se han completado.
-`[!imagen]`
+![Ingresos y reservas](capturas/ingresos_reservas.png)
 
 - **ii. Consultar las monedas restantes para el cambio**.
   - Esta opción muestra un desglose de los billetes y monedas disponibles en la caja.
-`[!imagen]`
+![Monedas restantes](capturas/monedas_restantes.png)
 
 - **iii. Volver al menú principal**.
   - Esta opción sale del menú de administrador y regresa al menú principal del hotel.
 
 - **iv. Apagar el software**.
   - Esta es la **únICA forma** de cerrar la aplicación. Al seleccionarla, el programa finalizará.
-`[!imagen]`
+![Apagar software](capturas/apagar_software.png)
 
 ---
 
