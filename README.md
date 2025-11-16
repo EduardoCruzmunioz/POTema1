@@ -56,6 +56,7 @@ Para comprobar la versión de Java que tiene instalado debe realizar los siguien
 ## DESCARGA 💾
 
 Abra la pestaña de "Code", y dentro de las opciones descargue la carpeta comprimida en un archivo .ZIP en el botón "Download ZIP".
+
 ![Descargar ZIP](capturas/download_zip.png)
 
 Nos dirigimos a la ubicación dónde tengamos la carpeta comprimida y la descomprimimos.
@@ -131,8 +132,8 @@ Para acceder a la opción **(d)**, el software solicitará un **usuario y contra
 > [!IMPORTANT]
 > **Credenciales de Acceso (Según el código):**
 > (Credenciales necesarias para probar el programa)
-> - USER: "**hola**"
-> - PASSWORD: "**hola**"
+> - USER: "**C13rV0**"
+> - PASSWORD: "**B3n40**"
 
 Una vez dentro, el menú de administrador ofrece las siguientes opciones (según el código fuente):
 
