@@ -784,7 +784,11 @@ public class Main {
                     pass = s.nextLine();
 
                     if (!user.equals(NOMBRE_ADMIN) || !pass.equals(ClAVE_ADMIN)) {
-                        System.out.print("\tNombre o usuario incorrecto");
+                        for (int i = 0; i < 50; i++) System.out.println();
+                        System.out.print("\tNombre o usuario incorrecto" +
+                                "Pulse cualquier tecla para continuar.");
+                        s.nextLine();
+                        for (int i = 0; i < 50; i++) System.out.println();
                         try { //Tiempo de espera
                             System.out.print("\n\tVolviendo al menú principal");
                             for (int i = 0; i < 3; i++) {
