@@ -29,9 +29,9 @@ public class Main {
                 monedas2e, monedas1e, monedas50cent, monedas20cent, monedas10cent, monedas5cent, monedas2cent, monedas1cent;
 
         //Constantes y variables para el login
-        final String NOMBRE_ADMIN = "hola";
-        final String ClAVE_ADMIN = "hola";
-        String user = "hola", pass = "hola";
+        final String NOMBRE_ADMIN = "C13rV0";
+        final String ClAVE_ADMIN = "B3n40";
+        String user, pass;
 
         int reservasFinalizadas = 0;
 
