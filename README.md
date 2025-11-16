@@ -54,7 +54,6 @@ Para comprobar la versión de Java que tiene instalado debe realizar los siguien
 ---
 
 ## DESCARGA 💾
-(Esta sección asume que el método de entrega es el mismo que el del proyecto Mevents, cumpliendo con la entrega de un ejecutable)
 
 Abra la pestaña de "Code", y dentro de las opciones descargue la carpeta comprimida en un archivo .ZIP en el botón "Download ZIP".
 ![Descargar ZIP](capturas/download_zip.png)
